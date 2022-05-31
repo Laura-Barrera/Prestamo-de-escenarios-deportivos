@@ -9,3 +9,7 @@ footer{
 p{
     font-family: Candara;
 }
+
+ul{
+    background-color: rgba(0, 0, 0, .20);
+}
