@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "mysql": "^2.18.1"
+  },
+  "name": "prestamo-de-escenarios-deportivos",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Laura-Barrera/Prestamo-de-escenarios-deportivos.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Laura-Barrera/Prestamo-de-escenarios-deportivos/issues"
+  },
+  "homepage": "https://github.com/Laura-Barrera/Prestamo-de-escenarios-deportivos#readme",
+  "description": ""
+}
