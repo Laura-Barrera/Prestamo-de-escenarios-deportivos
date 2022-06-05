@@ -1,9 +1,6 @@
 {
   "dependencies": {
     "mysql": "^2.18.1"
-<<<<<<< HEAD
-  }
-=======
   },
   "name": "prestamo-de-escenarios-deportivos",
   "version": "1.0.0",
@@ -24,5 +21,4 @@
   },
   "homepage": "https://github.com/Laura-Barrera/Prestamo-de-escenarios-deportivos#readme",
   "description": ""
->>>>>>> 9de1258f501e764534bb4f31dffb688e977599a3
 }
