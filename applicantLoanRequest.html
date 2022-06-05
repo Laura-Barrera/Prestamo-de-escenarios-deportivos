@@ -35,7 +35,7 @@
                                     <a class="nav-link active" href="applicantLoanRequest.html">Solicitar Préstamo</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Préstamos activos</a>
+                                    <a class="nav-link" href="applicantActiveLoans.html">Préstamos activos</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="# ">Calendario Préstamos</a>
@@ -56,127 +56,129 @@
                             <h5>Las obligaciones y condiciones de uso del escenario son parte integral del respectivo
                                 permiso y estas deben estar firmadas por el usuario</h5>
                         </div>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="col-5">
-                                                        <p style="font-size: medium">Nombre Solicitante:</p>
-                                                    </div>
-                                                    <div class="col-7">
-                                                        <input type="text" placeholder="Nombre"
-                                                               class="form-control"><br>
-                                                    </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <p style="font-size: medium">Nombre Solicitante:</p>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-5">
-                                                        <p style="font-size: medium">NIT y/o Cédula de ciudadanía:</p>
-                                                    </div>
-                                                    <div class="col-7">
-                                                        <input type="text" placeholder=""
-                                                               class="form-control"><br>
-                                                    </div>
+                                                <div class="col-7">
+                                                    <input type="text" placeholder="Nombre"
+                                                           class="form-control"><br>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-5">
-                                                        <p style="font-size: medium">Dirección:</p>
-                                                    </div>
-                                                    <div class="col-7">
-                                                        <input type="text" placeholder="Dirección"
-                                                               class="form-control"><br>
-                                                    </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <p style="font-size: medium">NIT y/o Cédula de ciudadanía:</p>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-5">
-                                                        <p style="font-size: medium">Telefono:</p>
-                                                    </div>
-                                                    <div class="col-7">
-                                                        <input type="number" placeholder="Telefono"
-                                                               class="form-control"><br>
-                                                    </div>
+                                                <div class="col-7">
+                                                    <input type="text" placeholder=""
+                                                           class="form-control"><br>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-5">
-                                                        <p style="font-size: medium">Correo Electrónico:</p>
-                                                    </div>
-                                                    <div class="col-7">
-                                                        <input type="email" placeholder="Correo Electrónico"
-                                                               class="form-control"><br>
-                                                    </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <p style="font-size: medium">Dirección:</p>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-5">
-                                                        <p style="font-size: medium">Tipo de usuario:</p>
-                                                    </div>
-                                                    <div class="col-7">
-                                                        <select class="form-select" aria-label="tipo usuario">
-                                                            <option selected>Seleccione...</option>
-                                                            <option value="1">Estudiante</option>
-                                                            <option value="2">Funcionario</option>
-                                                            <option value="3">Solicitante externo</option>
-                                                        </select><br>
-                                                    </div>
+                                                <div class="col-7">
+                                                    <input type="text" placeholder="Dirección"
+                                                           class="form-control"><br>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-5">
-                                                        <p style="font-size: medium">Escenario deportivo</p>
-                                                    </div>
-                                                    <div class="col-7">
-                                                        <select class="form-select" aria-label="tipo usuario">
-                                                            <option selected>Seleccione...</option>
-                                                            <option value="1">Seleccione 1</option>
-                                                            <option value="2">Seleccione 2</option>
-                                                            <option value="3">Seleccione 3</option>
-                                                        </select><br>
-                                                    </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <p style="font-size: medium">Telefono:</p>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-5">
-                                                        <p style="font-size: medium">Descripción:</p>
-                                                    </div>
-                                                    <div class="col-7">
+                                                <div class="col-7">
+                                                    <input type="number" placeholder="Telefono"
+                                                           class="form-control"><br>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <p style="font-size: medium">Correo Electrónico:</p>
+                                                </div>
+                                                <div class="col-7">
+                                                    <input type="email" placeholder="Correo Electrónico"
+                                                           class="form-control"><br>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <p style="font-size: medium">Tipo de usuario:</p>
+                                                </div>
+                                                <div class="col-7">
+                                                    <select class="form-select" aria-label="tipo usuario">
+                                                        <option selected>Seleccione...</option>
+                                                        <option value="1">Estudiante</option>
+                                                        <option value="2">Funcionario</option>
+                                                        <option value="3">Solicitante externo</option>
+                                                    </select><br>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <p style="font-size: medium">Escenario deportivo</p>
+                                                </div>
+                                                <div class="col-7">
+                                                    <select class="form-select" aria-label="tipo usuario">
+                                                        <option selected>Seleccione...</option>
+                                                        <option value="1">Seleccione 1</option>
+                                                        <option value="2">Seleccione 2</option>
+                                                        <option value="3">Seleccione 3</option>
+                                                    </select><br>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <p style="font-size: medium">Descripción:</p>
+                                                </div>
+                                                <div class="col-7">
                                                         <textarea class="form-control"
                                                                   rows="4"></textarea><br>
-                                                    </div>
                                                 </div>
+                                            </div>
 
-                                                <div class="row">
-                                                    <div class="col-5">
-                                                        <p style="font-size: medium">Fecha Inicio Evento:</p>
-                                                    </div>
-                                                    <div class="col-7">
-                                                        <input type="datetime-local" placeholder="Fecha Inicio"
-                                                               class="form-control"><br>
-                                                    </div>
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <p style="font-size: medium">Fecha Inicio Evento:</p>
                                                 </div>
-
-                                                <div class="row">
-                                                    <div class="col-5">
-                                                        <p style="font-size: medium">Fecha Fin Evento:</p>
-                                                    </div>
-                                                    <div class="col-7">
-                                                        <input type="datetime-local" placeholder="Fecha Fin"
-                                                               class="form-control"><br>
-                                                    </div>
+                                                <div class="col-7">
+                                                    <input type="datetime-local" placeholder="Fecha Inicio"
+                                                           class="form-control"><br>
                                                 </div>
+                                            </div>
 
-                                                <div class="row">
-                                                    <div class="col-5">
-                                                        <p style="font-size: medium">Firma</p>
-                                                    </div>
-                                                    <div class="col-7">
-                                                        <input type="file" class="form-control" accept="image/*">
-                                                    </div>
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <p style="font-size: medium">Fecha Fin Evento:</p>
                                                 </div>
+                                                <div class="col-7">
+                                                    <input type="datetime-local" placeholder="Fecha Fin"
+                                                           class="form-control"><br>
+                                                </div>
+                                            </div>
 
-                                                <div class="row align-items-center">
-                                                    <div class="col-12 text-end">
-                                                        <br>
-                                                        <button type="button" href="applicantLoanRequestFiles.html" class="btn btn-warning">Siguiente-></button>
-                                                    </div>
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <p style="font-size: medium">Firma</p>
+                                                </div>
+                                                <div class="col-7">
+                                                    <input type="file" class="form-control" accept="image/*">
+                                                </div>
+                                            </div>
+
+                                            <div class="row align-items-center">
+                                                <div class="col-12 text-end">
+                                                    <br>
+                                                    <button type="button" href="applicantLoanRequestFiles.html"
+                                                            class="btn btn-warning">Siguiente->
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -190,6 +192,7 @@
         </div>
     </div>
     &nbsp
+
 </main>
 <footer>
     <div class="container">
