@@ -56,7 +56,7 @@ class InstitutionalLoan {
         this._descripcion = value;
     }
 
-    toStringInstitutionalLoan(){
+    toStringInstitutionalLoan() {
         return InstitutionalLoan.toString()
     }
 }

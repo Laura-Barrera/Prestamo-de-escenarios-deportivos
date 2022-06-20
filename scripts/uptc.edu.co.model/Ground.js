@@ -1,4 +1,4 @@
-class Ground{
+class Ground {
     constructor(id, nombre, descripcion, horaApertura, horaCierre) {
         this._id = id;
         this._nombre = nombre;
@@ -47,7 +47,7 @@ class Ground{
         this._horaCierre = value;
     }
 
-    toStringGround(){
+    toStringGround() {
         return Ground.toString();
     }
 }

@@ -1,15 +1,16 @@
-body{
+body {
     background-color: rgba(255, 230, 2, .69);
 
 }
-footer{
+
+footer {
     background-color: #ffffff;
 }
 
-p{
+p {
     font-family: Candara;
 }
 
-ul{
+ul {
     background-color: rgba(0, 0, 0, .20);
 }

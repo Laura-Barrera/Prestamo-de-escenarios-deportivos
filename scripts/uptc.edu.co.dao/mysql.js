@@ -13,9 +13,10 @@ connection.connect((err) => {
 
 //Prueba informacion
 connection.query('select * from escenario_deportivo',
-    (err,rows) => {
-    if (err) throw err
-    console.log(rows)});
+    (err, rows) => {
+        if (err) throw err
+        console.log(rows)
+    });
 
 //Cierre de conexion
 connection.end();
