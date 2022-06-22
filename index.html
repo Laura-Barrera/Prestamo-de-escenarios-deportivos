@@ -37,7 +37,7 @@
                                     <p style="font-size: medium">Usuario:</p>
                                 </div>
                                 <div class="col-7">
-                                    <input type="email" placeholder="Usuario" class="form-control"><br>
+                                    <input type="email" placeholder="Usuario" class="form-control" id="usuario"><br>
                                 </div>
                             </div>
                             <div class="row">
@@ -45,7 +45,7 @@
                                     <p style="font-size: medium">Contraseña:</p>
                                 </div>
                                 <div class="col-7">
-                                    <input type="password" placeholder="Password" class="form-control">
+                                    <input type="password" placeholder="Password" class="form-control" id="contrasena">
                                 </div>
                             </div>
                             <div class="row align-items-center">
@@ -53,7 +53,7 @@
                                     <br><a href="registerUser.html"><p>Registrarse</p></a>
                                 </div>
                                 <div class="col-7 text-end">
-                                    <button type="button" class="btn btn-warning">Enviar</button>
+                                    <button type="button" class="btn btn-warning" onclick="obtenerCredenciales()">Enviar</button>
                                 </div>
                             </div>
                             <div class="row text-end">
@@ -80,6 +80,7 @@
         </div>
     </div>
 </footer>
+<script src="scripts/uptc.edu.co.model/Management.js"></script>
 </body>
 
 </html>
