@@ -1,5 +1,5 @@
 class User {
-    constructor(numeroDocumento, nombre, apellido, telefono, correo, usuario, contrasena) {
+    constructor(numeroDocumento, nombre, apellido, telefono, correo, usuario, contrasena, codigoProfesional, tipoPersona) {
         this._numeroDocumento = numeroDocumento;
         this._nombre = nombre;
         this._apellido = apellido;
@@ -7,8 +7,9 @@ class User {
         this._correo = correo;
         this._usuario = usuario;
         this._contrasena = contrasena;
+        this._codigoProfesional = codigoProfesional;
+        this._tipoPersona = tipoPersona;
     }
-
 
     get numeroDocumento() {
         return this._numeroDocumento;
@@ -64,6 +65,22 @@ class User {
 
     set contrasena(value) {
         this._contrasena = value;
+    }
+
+    get codigoProfesional() {
+        return this._codigoProfesional;
+    }
+
+    set codigoProfesional(value) {
+        this._codigoProfesional = value;
+    }
+
+    get tipoPersona() {
+        return this._tipoPersona;
+    }
+
+    set tipoPersona(value) {
+        this._tipoPersona = value;
     }
 
     toStringUser() {

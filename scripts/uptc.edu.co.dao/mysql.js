@@ -12,10 +12,17 @@ connection.connect((err) => {
 })
 
 //Prueba informacion
-connection.query('select * from escenario_deportivo',
+connection.query('select * from usuario',
     (err,rows) => {
     if (err) throw err
     console.log(rows)});
+
+function solicitante(){
+    connection.query('select @datos = usuario, contraseña from usuario where numUsuario = 1', (err,rows) =>{
+        if (err) throw err
+        console.log(rows)
+    })
+}
 
 //Cierre de conexion
 connection.end();
