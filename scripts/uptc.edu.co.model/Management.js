@@ -1,5 +1,5 @@
-function obtenerCredenciales(){
-    var usuario= document.getElementById("usuario").value
-    var contrasena= document.getElementById("contrasena").value
-    console.log("usuario: "+usuario+" contraseña"+contrasena)
+
+var App = function (){
+    var ground=new Ground("123","123","123","123","123");
+    ground.mostrarEscenario();
 }

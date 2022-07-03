@@ -1,36 +1,15 @@
-class Applicant extends User {
-    constructor(numeroDocumento, nombre, apellido, telefono, correo, usuario, contrasena, tipoPersona) {
-        super(numeroDocumento, nombre, apellido, telefono, correo, usuario, contrasena)
-        this._tipoPersona = tipoPersona;
-        this._solicitudesPrestamo = {}
-        this._prestamos = {}
-    }
+var Applicant = function (numeroDocumento, nombre, apellido, telefono, correo, usuario, contrasena, tipoPersona) {
 
-    get tipoPersona() {
-        return this._tipoPersona;
-    }
-
-    set tipoPersona(value) {
-        this._tipoPersona = value;
-    }
-
-    get solicitudesPrestamo() {
-        return this._solicitudesPrestamo;
-    }
-
-    set solicitudesPrestamo(value) {
-        this._solicitudesPrestamo = value;
-    }
-
-    get prestamos() {
-        return this._prestamos;
-    }
-
-    set prestamos(value) {
-        this._prestamos = value;
-    }
-
-    toStringApplicant() {
-        return Applicant.toString()
-    }
+    this.numeroDocumento = numeroDocumento
+    this.nombre = nombre
+    this.apellido = apellido
+    this.telefono = telefono
+    this.correo = correo
+    this.usuario = usuario
+    this.contrasena = contrasena
+    this._tipoPersona = tipoPersona
+    this._solicitudesPrestamo = {}
+    this._prestamos = {}
+    User.prototype.constructor.call(this.numeroDocumento, this.nombre, this.apellido, this.telefono, this.correo, this.usuario, this.contrasena)
 }
+Applicant.prototype=new User();

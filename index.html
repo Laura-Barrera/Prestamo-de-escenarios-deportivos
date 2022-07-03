@@ -25,41 +25,46 @@
             <div class="col-6 offset-md-3">
                 <div class="card">
                     <div class="card-body">
-                        <div class="container">
-                            <div class="row text-center">
-                                <p style="font-size: x-large"><b>INICIAR SESIÓN</b></p>
-                            </div>
-                            <div class="row text-center">
-                                <p style="font-size: medium">Por favor ingrese su usuario y contraseña</p>
-                            </div>
-                            <div class="row">
-                                <div class="col-5">
-                                    <p style="font-size: medium">Usuario:</p>
+                        <form>
+                            <div class="container">
+                                <div class="row text-center">
+                                    <p style="font-size: x-large"><b>INICIAR SESIÓN</b></p>
                                 </div>
-                                <div class="col-7">
-                                    <input type="email" placeholder="Usuario" class="form-control" id="usuario"><br>
+                                <div class="row text-center">
+                                    <p style="font-size: medium">Por favor ingrese su usuario y contraseña</p>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <p style="font-size: medium">Usuario:</p>
+                                    </div>
+                                    <div class="col-7">
+                                        <input type="email" placeholder="Usuario" class="form-control" name="usuario"><br>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <p style="font-size: medium">Contraseña:</p>
+                                    </div>
+                                    <div class="col-7">
+                                        <input type="password" placeholder="Password" class="form-control"
+                                               name="contrasena">
+                                    </div>
+                                </div>
+                                <div class="row align-items-center">
+                                    <div class="col-5">
+                                        <br><a href="registerUser.html"><p>Registrarse</p></a>
+                                    </div>
+                                    <div class="col-7 text-end">
+                                        <button type="submit" class="btn btn-warning" onclick="App()">
+                                            Enviar
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row text-end">
+                                    <a href="forgotPassword.html"><p>¿Olvido su contraseña?</p></a>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-5">
-                                    <p style="font-size: medium">Contraseña:</p>
-                                </div>
-                                <div class="col-7">
-                                    <input type="password" placeholder="Password" class="form-control" id="contrasena">
-                                </div>
-                            </div>
-                            <div class="row align-items-center">
-                                <div class="col-5">
-                                    <br><a href="registerUser.html"><p>Registrarse</p></a>
-                                </div>
-                                <div class="col-7 text-end">
-                                    <button type="button" class="btn btn-warning" onclick="obtenerCredenciales()">Enviar</button>
-                                </div>
-                            </div>
-                            <div class="row text-end">
-                                <a href="forgotPassword.html"><p>¿Olvido su contraseña?</p></a>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -80,7 +85,9 @@
         </div>
     </div>
 </footer>
+<script src="scripts/uptc.edu.co.model/Ground.js"></script>
 <script src="scripts/uptc.edu.co.model/Management.js"></script>
+
 </body>
 
 </html>
