@@ -1,4 +1,4 @@
-var Loan = function (codigo, fechaInicio, fechaFin, costo, estado, horaInicio, horaFin, solicitante, escenarioDeportivo) {
+function Loan (codigo, fechaInicio, fechaFin, costo, estado, horaInicio, horaFin, solicitante, escenarioDeportivo) {
     this._codigo = codigo;
     this._fechaInicio = fechaInicio;
     this._fechaFin = fechaFin;

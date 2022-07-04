@@ -1,4 +1,4 @@
-var Request = function (codigo, fechaIngreso, fechaInicio, fechaFin, escenario, horaInicio, horaFin) {
+function Request (codigo, fechaIngreso, fechaInicio, fechaFin, escenario, horaInicio, horaFin) {
     this._codigo = codigo;
     this._fechaIngreso = fechaIngreso;
     this._fechaInicio = fechaInicio;

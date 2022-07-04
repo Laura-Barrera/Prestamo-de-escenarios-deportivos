@@ -1,4 +1,4 @@
-var SportsProfessional = function (numeroDocumento, nombre, apellido, telefono, correo, usuario, contrasena, codigo) {
+function SportsProfessional (numeroDocumento, nombre, apellido, telefono, correo, usuario, contrasena, codigo) {
     this.numeroDocumento = numeroDocumento
     this.nombre = nombre
     this.apellido = apellido

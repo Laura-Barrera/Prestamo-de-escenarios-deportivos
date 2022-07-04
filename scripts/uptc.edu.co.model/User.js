@@ -1,4 +1,4 @@
-var User = function (numeroDocumento, nombre, apellido, telefono, correo, usuario, contrasena) {
+function User (numeroDocumento, nombre, apellido, telefono, correo, usuario, contrasena) {
     /*this._numeroDocumento = numeroDocumento;
     this._nombre = nombre;
     this._apellido = apellido;

@@ -35,7 +35,7 @@
                                     <p style="font-size: medium">Documento:</p>
                                 </div>
                                 <div class="col-7">
-                                    <input type="number" placeholder="Documento" class="form-control"><br>
+                                    <input type="number" placeholder="Documento" class="form-control" id="REGdocumento"><br>
                                 </div>
                             </div>
                             <div class="row">
@@ -43,7 +43,7 @@
                                     <p style="font-size: medium">Nombre:</p>
                                 </div>
                                 <div class="col-7">
-                                    <input type="text" placeholder="Nombre" class="form-control"><br>
+                                    <input type="text" placeholder="Nombre" class="form-control" id="REGnombre"><br>
                                 </div>
                             </div>
                             <div class="row">
@@ -51,7 +51,7 @@
                                     <p style="font-size: medium">Apellido:</p>
                                 </div>
                                 <div class="col-7">
-                                    <input type="text" placeholder="Apellido" class="form-control"><br>
+                                    <input type="text" placeholder="Apellido" class="form-control" id="REGapellido"><br>
                                 </div>
                             </div>
                             <div class="row">
@@ -59,7 +59,7 @@
                                     <p style="font-size: medium">Telefono:</p>
                                 </div>
                                 <div class="col-7">
-                                    <input type="number" placeholder="Telefono" class="form-control"><br>
+                                    <input type="number" placeholder="Telefono" class="form-control" id="REGtelefono"><br>
                                 </div>
                             </div>
                             <div class="row">
@@ -67,7 +67,7 @@
                                     <p style="font-size: medium">Correo:</p>
                                 </div>
                                 <div class="col-7">
-                                    <input type="email" placeholder="Correo" class="form-control"><br>
+                                    <input type="email" placeholder="Correo" class="form-control" id="REGcorreo"><br>
                                 </div>
                             </div>
                             <div class="row">
@@ -75,11 +75,11 @@
                                     <p style="font-size: medium">Tipo de usuario:</p>
                                 </div>
                                 <div class="col-7">
-                                    <select class="form-select" aria-label="tipo usuario">
+                                    <select class="form-select" aria-label="tipo usuario" id="REGTipoUsuario">
                                         <option selected>Seleccione...</option>
-                                        <option value="1">Estudiante</option>
-                                        <option value="2">Funcionario</option>
-                                        <option value="3">Solicitante externo</option>
+                                        <option value="Estudiante">Estudiante</option>
+                                        <option value="Funcionario">Funcionario</option>
+                                        <option value="Solicitante externo">Solicitante externo</option>
                                     </select><br>
                                 </div>
                             </div>
@@ -88,7 +88,7 @@
                                     <p style="font-size: medium">Usuario:</p>
                                 </div>
                                 <div class="col-7">
-                                    <input type="text" placeholder="Usuario" class="form-control"><br>
+                                    <input type="text" placeholder="Usuario" class="form-control" id="REGusuario"><br>
                                 </div>
                             </div>
                             <div class="row">
@@ -96,14 +96,14 @@
                                     <p style="font-size: medium">Contraseña:</p>
                                 </div>
                                 <div class="col-7">
-                                    <input type="password" placeholder="Contraseña" class="form-control"><br>
+                                    <input type="password" placeholder="Contraseña" class="form-control" id="REGcontrasena"><br>
                                 </div>
                             </div>
 
                             <div class="row align-items-center">
                                 <div class="col-12 text-end">
                                     <br>
-                                    <button type="button" class="btn btn-warning">Enviar</button>
+                                    <button type="button" class="btn btn-warning" onclick="crearSolicitante()">Enviar</button>
                                 </div>
                             </div>
                         </div>
@@ -127,5 +127,10 @@
         </div>
     </div>
 </footer>
+<script src="scripts/uptc.edu.co.model/jquery-3.6.0.js"></script>
+<script src="scripts/uptc.edu.co.model/User.js"></script>
+<script src="scripts/uptc.edu.co.model/Applicant.js"></script>
+<script src="scripts/uptc.edu.co.model/Ground.js"></script>
+<script src="scripts/uptc.edu.co.model/Management.js"></script>
 </body>
 </html>
