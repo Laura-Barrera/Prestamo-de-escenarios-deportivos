@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -24,53 +24,53 @@
                         <div class="container">
                             <ul class="nav nav-pills">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="applicantMainView.html">Inicio</a>
+                                    <a class="nav-link" href="professionalMainView.html">Inicio</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" style="color:black; background-color:#FFE602" href="applicantLoanRequest.html">Solicitar Préstamo</a>
+                                    <a class="nav-link active" style="color:black; background-color:#FFE602" href="professionalLoanRequestView.html">Solicitudes de Préstamo </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="applicantActiveLoans.html">Préstamos activos</a>
+                                    <a class="nav-link" href="professionalModificationRequest.html">Solicitudes de Modificación</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="applicantCalendarView.html">Calendario Préstamos</a>
+                                    <a class="nav-link" href="professionalCancellationRequest.html">Solicitudes de Cancelacion</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="professionalCalendarView.html">Calendario Préstamos</a>
                                 </li>
                                 <!--Falta lo del nombre e icono-->
                             </ul>
                         </div>
                         &nbsp;
-                        <div class="text-center">
-                            <h4>CARGA DE DOCUMENTOS</h4>
-                        </div>
                         &nbsp;
-                        <div class="container">
-                            <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <tr class="text-center">
-                                        <th scope="col">Documento</th>
-                                        <th scope="col">Estado</th>
-                                        <th scope="col">Cargar</th>
-                                        <th scope="col">Detalles</th>
-                                    </tr>
-                                    </thead>
-                                </table>
-                            </div>
-
-                            <div class="row align-items-center">
-                                <div class="col-12 text-end">
-                                    <br>
-                                    <button type="button" class="btn btn-warning">Enviar</button>
-                                </div>
-                            </div>
+                        <div class="text-center">
+                            <h4>SOLICITUDES DE PRÉSTAMO POR REVISAR</h4>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr class="text-center">
+                                    <th scope="col">Cod</th>
+                                    <th scope="col">Fecha Solicitud</th>
+                                    <th scope="col">Fecha Inicio</th>
+                                    <th scope="col">Fecha fin</th>
+                                    <th scope="col">Escenario deportivo</th>
+                                    <th scope="col">Seccional</th>
+                                    <th scope="col">Hora Inicio</th>
+                                    <th scope="col">Hora fin</th>
+                                    <th scope="col">Ver Formato</th>
+                                    <th scope="col">Ver Documentos</th>
+                                </tr>
+                                </thead>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    &nbsp
 </main>
-</body>
 <footer>
     <div class="container">
         <div class="row align-items-center">
@@ -83,4 +83,5 @@
         </div>
     </div>
 </footer>
+</body>
 </html>
