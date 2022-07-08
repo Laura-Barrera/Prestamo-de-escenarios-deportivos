@@ -1,17 +1,19 @@
-body {
+body{
     background-color: rgba(255, 230, 2, .69);
-
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
-
-footer {
+footer{
     background-color: #ffffff;
+    margin-top: auto;
 }
 
-p {
+p{
     font-family: Candara;
 }
 
-ul {
+ul{
     background-color: rgba(0, 0, 0, .20);
 }
 
@@ -87,6 +89,9 @@ a.nav-link {
     opacity: .2;
 }
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 2cb4c3738ea643feebc365a3f6ff4bc8e2801fa5
