@@ -1,13 +1,10 @@
 body {
     background-color: rgba(255, 230, 2, .69);
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+
 }
 
 footer {
     background-color: #ffffff;
-    margin-top: auto;
 }
 
 p {
@@ -17,77 +14,3 @@ p {
 ul {
     background-color: rgba(0, 0, 0, .20);
 }
-
-ul.nav-pills{
-    background-color: rgba(0, 0, 20, .20);
-    font-family: Candara;
-    font-weight: bold;
-    color: black;
-}
-
-a.nav-link {
-    color: black;
-}
-
-.calendar {
-    background: rgba(0,0,0,.07);
-    width: 80%;
-    max-width: 600px;
-    margin: 1em auto;
-    padding: .5em 0;
-}
-
-.calendar__info {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    padding: 0 2em;
-    font-size: 1.2em;
-    text-transform: uppercase;
-}
-
-.calendar__prev, .calendar__next {
-    color: rgba(0,0,0);
-    cursor: pointer;
-}
-
-.calendar__prev {
-    margin-right: auto;
-}
-
-.calendar__next {
-    margin-left: auto;
-}
-
-.calendar__week, .calendar__dates {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-gap: 10px;
-}
-
-.calendar__month, .calendar__year {
-    padding: .5em 1em;
-}
-
-.calendar__item {
-    text-align: center;
-    line-height: 2;
-}
-
-.calendar__today {
-    background: rgba(0,0,0,.3);
-    color: white;
-    width: 40%;
-    border-radius: 50%;
-    margin: auto;
-}
-
-.calendar__last-days {
-    opacity: .3;
-}
-
-
-

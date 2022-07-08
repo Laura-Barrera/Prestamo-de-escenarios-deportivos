@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 let solicitantes = [];
 let grounds = [];
 let loans = [];
@@ -50,20 +49,4 @@ var crearSolicitante = function () {
         alert("Alguno de los campos está vacío o no fue seleccionado");
     }
 
-=======
-class Management{
-
-    constructor(props) {
-        this.controller = new Controller();
-    }
-
-
-    validacionLogin(user, password){
-        if(user === "123" && password === "123"){
-            return true;
-        } else {
-            return false;
-        }
-    }
->>>>>>> 798d0c5d950f6f2d77e01098a2d4e3aded2902d9
 }
