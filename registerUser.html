@@ -7,15 +7,20 @@
     <meta name="description" content="Página para"/>
     <meta name="author" content=""/>
     <title>Préstamo de escenarios deportivos-UPTC</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="css//styles.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+
 </head>
 <body>
 <header>
     <img src="media/logoHeader.png" rel="png" width="100%" height="175">
 </header>
 <main>
+    &nbsp
     <div class="container">
         <div class="row">
             <div class="col">
@@ -25,28 +30,36 @@
                             <div class="row text-center">
                                 <p style="font-size: x-large"><b>REGISTRARSE</b></p>
                             </div>
-                            <div class="row justify-content-center">
-                                <div class="form-group col-md-3">
+                            <div class="row">
+                                <div class="col-5">
                                     <p style="font-size: medium">Documento:</p>
                                 </div>
-                                <div class="form-group col-md-5">
-                                    <input type="number" placeholder="Documento" class="form-control"><br>
+                                <div class="col-7">
+                                    <input type="number" placeholder="Documento" class="form-control" id="REGdocumento"><br>
                                 </div>
                             </div>
-                            <div class="row justify-content-center">
-                                <div class="form-group col-md-3">
+                            <div class="row">
+                                <div class="col-5">
                                     <p style="font-size: medium">Nombre:</p>
                                 </div>
-                                <div class="form-group col-md-5">
-                                    <input type="text" placeholder="Nombre" class="form-control"><br>
+                                <div class="col-7">
+                                    <input type="text" placeholder="Nombre" class="form-control" id="REGnombre"><br>
                                 </div>
                             </div>
-                            <div class="row justify-content-center">
-                                <div class="form-group col-md-3">
+                            <div class="row">
+                                <div class="col-5">
                                     <p style="font-size: medium">Apellido:</p>
                                 </div>
-                                <div class="form-group col-md-5">
-                                    <input type="text" placeholder="Apellido" class="form-control"><br>
+                                <div class="col-7">
+                                    <input type="text" placeholder="Apellido" class="form-control" id="REGapellido"><br>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-5">
+                                    <p style="font-size: medium">Dirección:</p>
+                                </div>
+                                <div class="col-7">
+                                    <input type="text" placeholder="Dirección" class="form-control" id="REGdireccion"><br>
                                 </div>
                             </div>
                             <div class="row justify-content-center">
@@ -59,53 +72,56 @@
                             </div>
                             <div class="row justify-content-center">
                                 <div class="form-group col-md-3">
+                            <div class="row">
+                                <div class="col-5">
                                     <p style="font-size: medium">Telefono:</p>
                                 </div>
-                                <div class="form-group col-md-5">
-                                    <input type="number" placeholder="Telefono" class="form-control"><br>
+                                <div class="col-7">
+                                    <input type="number" placeholder="Telefono" class="form-control" id="REGtelefono"><br>
                                 </div>
                             </div>
-                            <div class="row justify-content-center">
-                                <div class="form-group col-md-3">
+                            <div class="row">
+                                <div class="col-5">
                                     <p style="font-size: medium">Correo:</p>
                                 </div>
-                                <div class="form-group col-md-5">
-                                    <input type="email" placeholder="Correo" class="form-control"><br>
+                                <div class="col-7">
+                                    <input type="email" placeholder="Correo" class="form-control" id="REGcorreo"><br>
                                 </div>
                             </div>
-                            <div class="row justify-content-center">
-                                <div class="form-group col-md-3">
+                            <div class="row">
+                                <div class="col-5">
                                     <p style="font-size: medium">Tipo de usuario:</p>
                                 </div>
-                                <div class="form-group col-md-5">
-                                    <select class="form-select" aria-label="tipo usuario">
+                                <div class="col-7">
+                                    <select class="form-select" aria-label="tipo usuario" id="REGTipoUsuario">
                                         <option selected>Seleccione...</option>
-                                        <option value="1">Estudiante</option>
-                                        <option value="2">Funcionario</option>
-                                        <option value="3">Solicitante externo</option>
+                                        <option value="Estudiante">Estudiante</option>
+                                        <option value="Funcionario">Funcionario</option>
+                                        <option value="Solicitante externo">Solicitante externo</option>
                                     </select><br>
                                 </div>
                             </div>
-                            <div class="row justify-content-center">
-                                <div class="form-group col-md-3">
+                            <div class="row">
+                                <div class="col-5">
                                     <p style="font-size: medium">Usuario:</p>
                                 </div>
-                                <div class="form-group col-md-5">
-                                    <input type="text" placeholder="Usuario" class="form-control"><br>
+                                <div class="col-7">
+                                    <input type="text" placeholder="Usuario" class="form-control" id="REGusuario"><br>
                                 </div>
                             </div>
-                            <div class="row justify-content-center">
-                                <div class="form-group col-md-3">
+                            <div class="row">
+                                <div class="col-5">
                                     <p style="font-size: medium">Contraseña:</p>
                                 </div>
-                                <div class="form-group col-md-5">
-                                    <input type="password" placeholder="Contraseña" class="form-control"><br>
+                                <div class="col-7">
+                                    <input type="password" placeholder="Contraseña" class="form-control" id="REGcontrasena"><br>
                                 </div>
                             </div>
 
-                            <div class="row justify-content-center">
-                                <div class="col-md-8 text-end">
-                                    <br><button type="button" class="btn btn-warning">Enviar</button>
+                            <div class="row align-items-center">
+                                <div class="col-12 text-end">
+                                    <br>
+                                    <button type="button" class="btn btn-warning" onclick="crearSolicitante()">Enviar</button>
                                 </div>
                             </div>
                         </div>
@@ -119,14 +135,20 @@
 <footer>
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-md-8">
-                <p style="font-size:large">Versión 1.0 © 2022 Todos los derechos reservados | Bienestar Universitario</p>
+            <div class="col-8 align-items-center">
+                <p style="font-size: large">Versión 1.0 © 2022 Todos los derechos reservados | Bienestar
+                    Universitario</p>
             </div>
-            <div class="col-md-4">
-                <img src="media/logoBienestar.png" rel="png" width="220" height="70" >
+            <div class="col-4">
+                <img src="media/logoBienestar.png" rel="png" width="220" height="70">
             </div>
         </div>
     </div>
 </footer>
+<script src="scripts/uptc.edu.co.model/jquery-3.6.0.js"></script>
+<script src="scripts/uptc.edu.co.model/User.js"></script>
+<script src="scripts/uptc.edu.co.model/Applicant.js"></script>
+<script src="scripts/uptc.edu.co.model/Ground.js"></script>
+<script src="scripts/uptc.edu.co.model/Management.js"></script>
 </body>
 </html>
