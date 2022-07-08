@@ -28,16 +28,17 @@ var crearSolicitante = function () {
     var numeroDocumento = document.getElementById("REGdocumento").value
     var nombre = document.getElementById("REGnombre").value
     var apellido = document.getElementById("REGapellido").value
+    var direccion = document.getElementById("REGdireccion").value
     var telefono = document.getElementById("REGtelefono").value
     var correo = document.getElementById("REGcorreo").value
     var usuario = document.getElementById("REGusuario").value
     var contrasena = document.getElementById("REGcontrasena").value
     var tipoPersona = document.getElementById("REGTipoUsuario").value
-    if (!(numeroDocumento == "" || nombre == "" || apellido == "" || telefono == "" || correo == "" || usuario == "" || contrasena == "" || tipoPersona == "")) {
+    if (!(numeroDocumento == "" || nombre == "" || apellido == "" || direccion == "" || telefono == "" || correo == "" || usuario == "" || contrasena == "" || tipoPersona == "")) {
 
-        var solicitante = new Applicant(numeroDocumento, nombre, apellido, telefono, correo, usuario, contrasena, tipoPersona);
+        var solicitante = new Applicant(numeroDocumento, nombre, apellido, direccion, telefono, correo, usuario, contrasena, tipoPersona);
         var response = solicitante.addSolicitante();
-        alert(response)
+
         /*if (response == 1) {
             alert("Usuario creado exitosamente");
             window.location.replace("../index.html");
