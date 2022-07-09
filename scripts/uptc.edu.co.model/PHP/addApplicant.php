@@ -12,9 +12,13 @@ $codigoProfesional = $_POST["codigoProfesional"];
 $tipoPersona = $_POST["tipoPersona"];
 
 require ("connection.php");
-$sql = "INSERT INTO usuario (numUsuario,documento,nombre,apellido,direccion,telefono,correoelectronico,usuario,contraseña,codigoProfesional,tipoPersona) values ('$numUsuario','$documento','$nombre','$apellido','$direccion','$telefono','$correoelectronico','$usuario','$contraseña','$codigoProfesional','$tipoPersona')";
-#$sql2 = "INSERT INTO solicitante (tipoPersona) values ('$tipoPersona')";
-mysqli_query($conn, $sql);
-#mysqli_query($conn, $sql2);
-echo 1;
+$select = "SELECT documento FROM usuario where documento=$documento OR correoelectronico='$correoelectronico' OR usuario='$usuario'";
+$result = $conn->query($select);
+if ($result->num_rows > 0) {
+    echo 1;
+} else {
+    $sql = "INSERT INTO usuario (numUsuario,documento,nombre,apellido,direccion,telefono,correoelectronico,usuario,contraseña,codigoProfesional,tipoPersona) values ('$numUsuario','$documento','$nombre','$apellido','$direccion','$telefono','$correoelectronico','$usuario','$contraseña','$codigoProfesional','$tipoPersona')";
+    mysqli_query($conn, $sql);
+    echo 0;
+}
 ?>
