@@ -17,7 +17,6 @@ ul{
     background-color: rgba(0, 0, 0, .20);
 }
 
-
 ul.nav-pills{
     background-color: rgba(0, 0, 20, .20);
     font-family: Candara;
@@ -88,4 +87,3 @@ a.nav-link {
 .calendar__last-days {
     opacity: .2;
 }
-
