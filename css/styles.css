@@ -1,17 +1,19 @@
-body {
+body{
     background-color: rgba(255, 230, 2, .69);
-
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
-
-footer {
+footer{
     background-color: #ffffff;
+    margin-top: auto;
 }
 
-p {
+p{
     font-family: Candara;
 }
 
-ul {
+ul{
     background-color: rgba(0, 0, 0, .20);
 }
 
@@ -86,7 +88,4 @@ a.nav-link {
 .calendar__last-days {
     opacity: .2;
 }
-
-
-
 
