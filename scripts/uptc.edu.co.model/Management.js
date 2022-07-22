@@ -1,9 +1,3 @@
-let solicitantes = [];
-let grounds = [];
-let loans = [];
-let profesionales = [];
-let solicitudes = [];
-let prestamosInstitucionales = [];
 
 
 var getInicioSesion = function () {

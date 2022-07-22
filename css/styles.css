@@ -23,6 +23,10 @@ ul.nav-pills{
     font-weight: bold;
     color: black;
 }
+a{
+    text-decoration: none;
+    color: black;
+}
 
 a.nav-link {
     color: black;
