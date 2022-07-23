@@ -13,75 +13,74 @@ p{
     font-family: Candara;
 }
 
-ul{
-    background-color: rgba(0, 0, 0, .20);
-}
-
-ul.nav-pills{
-    background-color: rgba(0, 0, 20, .20);
+nav.navbar.navbar-expand-lg.navbar-light{
+    background-color: #E6E6E6;
     font-family: Candara;
     font-weight: bold;
-    color: black;
 }
 
 a.nav-link {
     color: black;
 }
 
-.calendar {
-    background: rgba(0,0,0,.07);
-    width: 80%;
-    max-width: 600px;
-    margin: 1em auto;
-    padding: .5em 0;
+.taco-tuesday {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 }
 
-.calendar__info {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    padding: 0 2em;
-    font-size: 1.2em;
-    text-transform: uppercase;
+[type=tel] {
+    padding: 13px 35px;
+    font-size: 16px;
+    background-image:none;
+    background-position: 5px 40%;
+    background-repeat: no-repeat;
+    background-size: 25px 25px;
+    border: 1px solid lightgray;
+    background-color: aqua;
+    font-family: Candara;
 }
 
-.calendar__prev, .calendar__next {
-    color: rgba(0,0,0);
-    cursor: pointer;
+.amp-date-picker-selecting {
+    border-bottom: 1px solid blue;
 }
 
-.calendar__prev {
-    margin-right: auto;
+.DayPicker_transitionContainer.DayPicker_transitionContainer_1 {
+    background-color: rgba(0,0,0,.05);
 }
 
-.calendar__next {
-    margin-left: auto;
+li{
+    color: black;
 }
 
-.calendar__week, .calendar__dates {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-gap: 10px;
+button.CalendarDay_button.CalendarDay_button_1 {
+    color: black;
 }
 
-.calendar__month, .calendar__year {
-    padding: .5em 1em;
+button.CalendarDay_button.CalendarDay_button_1.CalendarDay_button__default.CalendarDay_button__default_2 {
+    color: rgba(35, 33, 33, 0.29);
 }
 
-.calendar__item {
-    text-align: center;
-    line-height: 2;
+.CalendarMonth_caption.CalendarMonth_caption_1 {
+    font-size: large;
+    font-weight: 900;
+    color: black;
+    background-color: #e3e3e3;
 }
 
-.calendar__today {
-    background: rgba(0,0,0,.3);
-    color: white;
-    width: 40%;
-    border-radius: 50%;
-    margin: auto;
+.DayPicker_weekHeader {
+    position: absolute;
+    padding: 0 13px;
+    text-align: left;
+    font-weight: bold;
+}
+
+#prueba{
+    padding: 10px;
+    width: 100%;
+    margin-left: 100px;
 }
 
 .calendar__last-days {
