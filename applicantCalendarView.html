@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="css//styles.css" rel="stylesheet">
-<<<<<<< HEAD
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     <link href="css//calendar.css" rel="stylesheet">
@@ -20,12 +20,11 @@
     <script async custom-element="amp-date-picker" src="https://cdn.ampproject.org/v0/amp-date-picker-0.1.js"></script>
     <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.1.js"></script>
     <script async src="https://cdn.ampproject.org/v0.js"></script>
-=======
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
 
->>>>>>> 457469c1450091a6c208dcef29e3382da71af223
 </head>
 <body>
 <header>
@@ -39,7 +38,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="container">
-<<<<<<< HEAD
+
                             <nav class="navbar navbar-expand-lg navbar-light" >
                                 <div class="container-fluid">
                                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -99,7 +98,7 @@
                                 </div>
                             </div>
                         </div>
-=======
+
                             <ul class="nav nav-pills">
                                 <li class="nav-item">
                                     <a class="nav-link" aria-current="page" href="applicantMainView.html">Inicio</a>
@@ -111,7 +110,7 @@
                                     <a class="nav-link" href="applicantActiveLoans.html">Préstamos activos</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="applicantCalendarView.html">Calendario
+                                    <a class="nav-link active" style="color:black; background-color:#FFE602"  href="applicantCalendarView.html">Calendario
                                         Préstamos</a>
                                 </li>
                                 <!--Falta lo del nombre e icono-->
@@ -119,7 +118,58 @@
                         </div>
                         &nbsp
 
->>>>>>> 457469c1450091a6c208dcef29e3382da71af223
+                        <div class="text-center">
+                            <h4>PROGRAMACIÓN PRÉSTAMOS ACTIVOS</h4>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class = "col-md-7 justify-content-lg-evenly">
+                                    <div class="calendar">
+                                        <div class="calendar__info">
+                                            <div class="calendar__prev" id="prev-month">&#706;</div>
+                                            <div class="calendar__month" id="month"></div>
+                                            <div class="calendar__year" id="year"></div>
+                                            <div class="calendar__next" id="next-month">&#707;</div>
+                                        </div>
+                                        <div class="calendar__week">
+                                            <div class="calendar__day calendar__item">Mon</div>
+                                            <div class="calendar__day calendar__item">Tue</div>
+                                            <div class="calendar__day calendar__item">Wed</div>
+                                            <div class="calendar__day calendar__item">Thu</div>
+                                            <div class="calendar__day calendar__item">Fri</div>
+                                            <div class="calendar__day calendar__item">Sat</div>
+                                            <div class="calendar__day calendar__item">Sun</div>
+                                        </div>
+                                        <div class="calendar__dates" id="dates"></div>
+                                    </div>
+                                </div>
+                                <script src="scripts//uptc.edu.co.view//CalendarPages.js"></script>
+                                <div class="col-md-5 justify-content-center">
+                                    <h6 class="text-md-center">Actividades</h6>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            <tr class="text-center">
+                                                <th scope="col">Hora</th>
+                                                <th scope="col">Escenario Deportivo</th>
+                                                <th scope="col">Seccional</th>
+                                            </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2 offset-md-4">
+                                        <button type="button" class="btn btn-warning">Visualizar fecha</button>
+                                    </div>
+                                    <div class="col-md-3 offset-md-3">
+                                        <a href="professionalCreateInstitutionalLoan.html">
+                                            <button type="button" class="btn btn-warning">Crear préstamo institucional</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
