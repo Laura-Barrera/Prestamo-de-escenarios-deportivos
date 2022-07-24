@@ -1,36 +1,42 @@
-class Applicant extends User {
-    constructor(numeroDocumento, nombre, apellido, telefono, correo, usuario, contrasena, tipoPersona) {
-        super(numeroDocumento, nombre, apellido, telefono, correo, usuario, contrasena)
-        this._tipoPersona = tipoPersona;
-        this._solicitudesPrestamo = {}
-        this._prestamos = {}
-    }
+function Applicant(numeroDocumento, nombre, apellido, direccion, telefono, correo, usuario, contrasena, tipoPersona) {
 
-    get tipoPersona() {
-        return this._tipoPersona;
-    }
+    this.numeroDocumento = numeroDocumento
+    this.nombre = nombre
+    this.apellido = apellido
+    this.direccion = direccion
+    this.telefono = telefono
+    this.correo = correo
+    this.usuario = usuario
+    this.contrasena = contrasena
+    this._tipoPersona = tipoPersona
+    this._solicitudesPrestamo = {}
+    this._prestamos = {}
+    User.prototype.constructor.call(this.numeroDocumento, this.nombre, this.apellido, this.direccion,this.telefono, this.correo, this.usuario, this.contrasena)
+}
 
-    set tipoPersona(value) {
-        this._tipoPersona = value;
-    }
+Applicant.prototype = new User();
 
-    get solicitudesPrestamo() {
-        return this._solicitudesPrestamo;
-    }
+Applicant.prototype.addSolicitante = function () {
 
-    set solicitudesPrestamo(value) {
-        this._solicitudesPrestamo = value;
-    }
+    $.ajax({
+        type: 'POST',
+        url: 'scripts/uptc.edu.co.model/PHP/addApplicant.php',
+        data: {
+            numUsuario: null,
+            documento: this.numeroDocumento,
+            nombre: this.nombre,
+            apellido: this.apellido,
+            direccion: this.direccion,
+            telefono: this.telefono,
+            correoelectronico: this.correo,
+            usuario: this.usuario,
+            contraseña: this.contrasena,
+            codigoProfesional: "NULL",
+            tipoPersona: this._tipoPersona
+        },
+        success: function (response) {
 
-    get prestamos() {
-        return this._prestamos;
-    }
+        }
+    });
 
-    set prestamos(value) {
-        this._prestamos = value;
-    }
-
-    toStringApplicant() {
-        return Applicant.toString()
-    }
 }

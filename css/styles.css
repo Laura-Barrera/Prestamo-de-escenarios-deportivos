@@ -82,3 +82,7 @@ button.CalendarDay_button.CalendarDay_button_1.CalendarDay_button__default.Calen
     width: 100%;
     margin-left: 100px;
 }
+
+.calendar__last-days {
+    opacity: .2;
+}
