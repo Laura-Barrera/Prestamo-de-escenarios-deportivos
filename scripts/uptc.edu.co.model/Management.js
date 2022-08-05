@@ -18,8 +18,9 @@ var getInicioSesion = function () {
             success: function (response) {
                 datos = JSON.parse(response)
                 if (!(response == 1)) {
+                    document.cookie = 'userId='+datos[3]+';path=/';
                     if (datos[2] == "NULL") {
-                        document.cookie = 'name='+datos[0]+';path=/';
+
                         window.location.href = "applicantMainView.html";
 
 
@@ -69,7 +70,10 @@ var datosFormulario = function (){
     var tipoUsuario=document.getElementById("GenSolTipoUsuario");
     $.ajax({
         async: true,
-        type: 'GET',
+        type: 'POST',
+        data: {
+            userId: document.cookie.substring(7,document.cookie.length)
+        },
         url: 'scripts/uptc.edu.co.model/PHP/llenarDatosSolicitud.php',
         success: function (response) {
             datos = JSON.parse(response)
@@ -85,5 +89,20 @@ var datosFormulario = function (){
 }
 
 var prueba = function (){
-    alert(document.cookie.replace("name"));
+    alert(document.cookie.substring(7,document.cookie.length));
+    //document.getElementById("UserSession2").innerText="Laura Barrera"
+}
+var nombreUsuario = function (){
+    $.ajax({
+        type: 'POST',
+        data: {
+            userId: document.cookie.substring(7,document.cookie.length)
+        },
+        url: 'scripts/uptc.edu.co.model/PHP/nombreUsuario.php',
+        success: function (response){
+            var nombre = JSON.parse(response);
+            document.getElementById("UserSession").innerText=nombre;
+        }
+    });
+
 }
