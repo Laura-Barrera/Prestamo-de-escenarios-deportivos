@@ -1,6 +1,6 @@
 
-
 var getInicioSesion = function () {
+
     var LOGusuario = document.getElementById("LOGusuario").value
     var LOGcontrasena = document.getElementById("LOGcontrasena").value
     var datos = []
@@ -19,7 +19,10 @@ var getInicioSesion = function () {
                 datos = JSON.parse(response)
                 if (!(response == 1)) {
                     if (datos[2] == "NULL") {
+                        document.cookie = 'name='+datos[0]+';path=/';
                         window.location.href = "applicantMainView.html";
+
+
                     } else {
                         window.location.href = "professionalMainView.html";
                     }
@@ -56,4 +59,31 @@ var crearSolicitante = function () {
         alert("Alguno de los campos está vacío o no fue seleccionado");
     }
 
+}
+var datosFormulario = function (){
+    var nombre=document.getElementById("GenSolNombre");
+    var documento=document.getElementById("GenSolDocumento");
+    var direccion=document.getElementById("GenSolDireccion");
+    var telefono=document.getElementById("GenSolTelefono");
+    var correo=document.getElementById("GenSolEmail");
+    var tipoUsuario=document.getElementById("GenSolTipoUsuario");
+    $.ajax({
+        async: true,
+        type: 'GET',
+        url: 'scripts/uptc.edu.co.model/PHP/llenarDatosSolicitud.php',
+        success: function (response) {
+            datos = JSON.parse(response)
+            nombre.setAttribute("placeholder",datos[0]);
+            documento.setAttribute("placeholder",datos[1]);
+            direccion.setAttribute("placeholder",datos[2]);
+            telefono.setAttribute("placeholder",datos[3]);
+            correo.setAttribute("placeholder",datos[4]);
+            tipoUsuario.setAttribute("placeholder",datos[5]);
+        }
+    });
+
+}
+
+var prueba = function (){
+    alert(document.cookie.replace("name"));
 }

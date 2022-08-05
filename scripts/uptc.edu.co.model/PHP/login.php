@@ -6,6 +6,7 @@ require("connection.php");
 $select = "SELECT nombre, apellido, codigoProfesional FROM usuario WHERE usuario='$usuario' AND contrasena='$contrasena'";
 $result = $conn->query($select);
 if ($result->num_rows > 0) {
+        #$conn->query("insert into usuario_activo (select * from usuario WHERE usuario='$usuario' AND contrasena='$contrasena')");
         $row = $result->fetch_assoc();
         $data[] = $row["nombre"];
         $data[] = $row["apellido"];
