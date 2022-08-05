@@ -104,5 +104,30 @@ var nombreUsuario = function (){
             document.getElementById("UserSession").innerText=nombre;
         }
     });
+}
 
+var cargarEscenarios = function (){
+    var seccional = document.getElementById("seccional").value;
+    $.ajax({
+       type: 'POST',
+       data: {
+           sede: seccional
+       },
+       url:'scripts/uptc.edu.co.model/PHP/cargarEscenarios.php',
+       success: function (response){
+           datos=JSON.parse(response);
+           var select = document.getElementById("escenario");
+           select.innerHTML=""
+           var option= document.createElement("option")
+           option.setAttribute("value","");
+           option.innerText="Seleccione...";
+           select.append(option)
+           for (let i = 0; i < datos.length; i++) {
+               var option= document.createElement("option")
+               option.setAttribute("value",datos[i]);
+               option.innerText=datos[i];
+               select.append(option)
+           }
+       }
+    });
 }
