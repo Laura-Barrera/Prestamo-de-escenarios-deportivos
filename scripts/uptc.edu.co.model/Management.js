@@ -1,4 +1,3 @@
-
 var getInicioSesion = function () {
 
     var LOGusuario = document.getElementById("LOGusuario").value
@@ -18,7 +17,7 @@ var getInicioSesion = function () {
             success: function (response) {
                 datos = JSON.parse(response)
                 if (!(response == 1)) {
-                    document.cookie = 'userId='+datos[3]+';path=/';
+                    document.cookie = 'userId=' + datos[3] + ';path=/';
                     if (datos[2] == "NULL") {
 
                         window.location.href = "applicantMainView.html";
@@ -61,73 +60,132 @@ var crearSolicitante = function () {
     }
 
 }
-var datosFormulario = function (){
-    var nombre=document.getElementById("GenSolNombre");
-    var documento=document.getElementById("GenSolDocumento");
-    var direccion=document.getElementById("GenSolDireccion");
-    var telefono=document.getElementById("GenSolTelefono");
-    var correo=document.getElementById("GenSolEmail");
-    var tipoUsuario=document.getElementById("GenSolTipoUsuario");
+var datosFormulario = function () {
+    var nombre = document.getElementById("GenSolNombre");
+    var documento = document.getElementById("GenSolDocumento");
+    var direccion = document.getElementById("GenSolDireccion");
+    var telefono = document.getElementById("GenSolTelefono");
+    var correo = document.getElementById("GenSolEmail");
+    var tipoUsuario = document.getElementById("GenSolTipoUsuario");
     $.ajax({
         async: true,
         type: 'POST',
         data: {
-            userId: document.cookie.substring(7,document.cookie.length)
+            userId: document.cookie.substring(7, document.cookie.length)
         },
         url: 'scripts/uptc.edu.co.model/PHP/llenarDatosSolicitud.php',
         success: function (response) {
             datos = JSON.parse(response)
-            nombre.setAttribute("placeholder",datos[0]);
-            documento.setAttribute("placeholder",datos[1]);
-            direccion.setAttribute("placeholder",datos[2]);
-            telefono.setAttribute("placeholder",datos[3]);
-            correo.setAttribute("placeholder",datos[4]);
-            tipoUsuario.setAttribute("placeholder",datos[5]);
+            nombre.setAttribute("placeholder", datos[0]);
+            documento.setAttribute("placeholder", datos[1]);
+            direccion.setAttribute("placeholder", datos[2]);
+            telefono.setAttribute("placeholder", datos[3]);
+            correo.setAttribute("placeholder", datos[4]);
+            tipoUsuario.setAttribute("placeholder", datos[5]);
         }
     });
 
 }
 
-var prueba = function (){
-    alert(document.cookie.substring(7,document.cookie.length));
+var prueba = function () {
+    alert(document.getElementById("fechaIni").value);
     //document.getElementById("UserSession2").innerText="Laura Barrera"
 }
-var nombreUsuario = function (){
+var nombreUsuario = function () {
     $.ajax({
         type: 'POST',
         data: {
-            userId: document.cookie.substring(7,document.cookie.length)
+            userId: document.cookie.substring(7, document.cookie.length)
         },
         url: 'scripts/uptc.edu.co.model/PHP/nombreUsuario.php',
-        success: function (response){
+        success: function (response) {
             var nombre = JSON.parse(response);
-            document.getElementById("UserSession").innerText=nombre;
+            document.getElementById("UserSession").innerText = nombre;
         }
     });
 }
 
-var cargarEscenarios = function (){
+var cargarEscenarios = function () {
     var seccional = document.getElementById("seccional").value;
     $.ajax({
-       type: 'POST',
-       data: {
-           sede: seccional
-       },
-       url:'scripts/uptc.edu.co.model/PHP/cargarEscenarios.php',
-       success: function (response){
-           datos=JSON.parse(response);
-           var select = document.getElementById("escenario");
-           select.innerHTML=""
-           var option= document.createElement("option")
-           option.setAttribute("value","");
-           option.innerText="Seleccione...";
-           select.append(option)
-           for (let i = 0; i < datos.length; i++) {
-               var option= document.createElement("option")
-               option.setAttribute("value",datos[i]);
-               option.innerText=datos[i];
-               select.append(option)
-           }
-       }
+        type: 'POST',
+        data: {
+            sede: seccional
+        },
+        url: 'scripts/uptc.edu.co.model/PHP/cargarEscenarios.php',
+        success: function (response) {
+            datos = JSON.parse(response);
+            var select = document.getElementById("escenario");
+            select.innerHTML = ""
+            var option = document.createElement("option")
+            option.setAttribute("value", "");
+            option.innerText = "Seleccione...";
+            select.append(option)
+            for (let i = 0; i < datos.length; i++) {
+                var option = document.createElement("option")
+                option.setAttribute("value", datos[i]);
+                option.innerText = datos[i];
+                select.append(option)
+            }
+        }
     });
+}
+
+var capturarDatosSolicitud = function () {
+    var idSolicitante = document.cookie.substring(7, document.cookie.length);
+    //alert(idSolicitante)
+    var seccional = document.getElementById("seccional").value;
+    //alert(seccional);
+    var escenario = document.getElementById("escenario").value;
+    //alert(escenario);
+    var descripcion = document.getElementById("GenSolDescripcion").value;
+    //alert(descripcion);
+    var fechaInicio = document.getElementById("GenSolFechaIni").value.substring(0, 10);
+    //alert(fechaInicio);
+    var fechaFin = document.getElementById("GenSolFechaFin").value.substring(0, 10);
+    //alert(fechaFin);
+    var horaInicio = document.getElementById("GenSolFechaIni").value.substring(11, 17);
+    //alert(horaInicio);
+    var horaFin = document.getElementById("GenSolFechaFin").value.substring(11, 17);
+    //alert(horaFin);
+    var firma = $('#GenSolFirma').prop("files")[0];
+    var form_data = new FormData();
+    form_data.append("firma", firma)
+    //Añado los datos del fichero que voy a subir
+    //En el lado del servidor puede obtener el archivo a traves de $_FILES["file"]
+
+    //alert(firma)
+
+    if (idSolicitante != "" && seccional != "" && escenario != "" && descripcion != "" && fechaInicio != "" && fechaFin != "" && horaInicio != "" && horaFin != "" && firma != "") {
+        $.ajax({
+            async: false,
+            type: 'POST',
+            data: {
+                idSolicitante: idSolicitante,
+                seccional: seccional,
+                escenario: escenario,
+                descripcion: descripcion,
+                fechaInicio: fechaInicio,
+                horaInicio: horaInicio,
+                fechaFin: fechaFin,
+                horaFin: horaFin,
+            },
+            url: 'scripts/uptc.edu.co.model/PHP/createLoanRequest.php',
+            success: function (response) {
+                alert(response)
+            }
+        });
+        $.ajax({
+            type: 'POST',
+            data : form_data,
+            contentType: false,
+            processData: false,
+            url: 'scripts/uptc.edu.co.model/PHP/firma.php',
+            success: function (response){
+                alert(response)
+            }
+        });
+    }else{
+        alert("Hay campos vacíos en el formulario")
+    }
 }
