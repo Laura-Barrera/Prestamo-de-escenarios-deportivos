@@ -18,6 +18,7 @@ var getInicioSesion = function () {
                 datos = JSON.parse(response)
                 if (!(response == 1)) {
                     document.cookie = 'userId=' + datos[3] + ';path=/';
+                    document.cookie='userIdTest=' + 'holaMundo' + ';path=/'
                     if (datos[2] == "NULL") {
 
                         window.location.href = "applicantMainView.html";
@@ -60,6 +61,17 @@ var crearSolicitante = function () {
     }
 
 }
+
+var getCookie= function (){
+    var cookies = document.cookie.split(';')
+    for (let i = 0; i < cookies.length; i++) {
+
+        if ( cookies[i].substring(0, 7)=="userId="){
+            return cookies[i]
+        }
+    }
+
+}
 var datosFormulario = function () {
     var nombre = document.getElementById("GenSolNombre");
     var documento = document.getElementById("GenSolDocumento");
@@ -67,11 +79,12 @@ var datosFormulario = function () {
     var telefono = document.getElementById("GenSolTelefono");
     var correo = document.getElementById("GenSolEmail");
     var tipoUsuario = document.getElementById("GenSolTipoUsuario");
+    var cookie = getCookie()
     $.ajax({
         async: true,
         type: 'POST',
         data: {
-            userId: document.cookie.substring(7, document.cookie.length)
+            userId: cookie.substring(7, cookie.length)
         },
         url: 'scripts/uptc.edu.co.model/PHP/llenarDatosSolicitud.php',
         success: function (response) {
@@ -132,7 +145,10 @@ var cargarEscenarios = function () {
 }
 
 var capturarDatosSolicitud = function () {
-    var idSolicitante = document.cookie.substring(7, document.cookie.length);
+    var cookies=document.cookie.split(";")
+
+    var idSolicitante = cookies[0].substring(7,cookies[0].length)
+    console.log(idSolicitante)
     //alert(idSolicitante)
     var seccional = document.getElementById("seccional").value;
     //alert(seccional);
@@ -172,19 +188,28 @@ var capturarDatosSolicitud = function () {
             },
             url: 'scripts/uptc.edu.co.model/PHP/createLoanRequest.php',
             success: function (response) {
-                alert(response)
+                if (response == 1){
+                    $.ajax({
+                        type: 'POST',
+                        data : form_data,
+                        contentType: false,
+                        processData: false,
+                        url: 'scripts/uptc.edu.co.model/PHP/firma.php',
+                        success: function (response){
+                            if (response==1){
+                                alert("Solicitud creada, ahora debe subir los documentos de soporte")
+                                window.location.href="applicantLoanRequestFiles.html"
+                            }else if (response == 2){
+                                alert("Error al cargar el archivo, revise la subida")
+                            }
+                        }
+                    });
+                }else{
+                    alert("Error al cargar la solicitud")
+                }
             }
         });
-        $.ajax({
-            type: 'POST',
-            data : form_data,
-            contentType: false,
-            processData: false,
-            url: 'scripts/uptc.edu.co.model/PHP/firma.php',
-            success: function (response){
-                alert(response)
-            }
-        });
+
     }else{
         alert("Hay campos vacíos en el formulario")
     }

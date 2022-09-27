@@ -16,4 +16,4 @@ $idEscenario = $row["idEscenario"];
 $insert = "INSERT INTO solicitud_prestamo (codigoSolicitud, fechaInicio, fechaFin, estado, descripcion, horaInicio, horaFin, documento, idEscenario) VALUES (null, '$fechaInicio', '$fechaFin','No autorizado', '$descripcion', '$horaInicio', '$horaFin','$documento', '$idEscenario');";
 $conn->query($insert);
 
-echo "Solicitud creada, debe esperar la aprobación del profesional de la linea de deportes";
+echo 1;

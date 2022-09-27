@@ -1,6 +1,6 @@
 <?php
 require ("connection.php");
-$result=$conn->query("select MIN(firma) AS firma from solicitud_prestamo");
+$result=$conn->query("select firma AS firma from solicitud_prestamo");
 $imgData = $result->fetch_assoc();
 $img="firma/".$imgData["firma"];
 header('Content-Description: File Transfer');
