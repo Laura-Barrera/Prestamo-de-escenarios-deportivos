@@ -13,7 +13,7 @@ $selectIdEscenario = "SELECT idEscenario FROM escenario_deportivo WHERE nombre='
 $result = $conn->query($selectIdEscenario);
 $row = $result->fetch_assoc();
 $idEscenario = $row["idEscenario"];
-$insert = "INSERT INTO solicitud_prestamo (codigoSolicitud, fechaInicio, fechaFin, estado, descripcion, horaInicio, horaFin, documento, idEscenario) VALUES (null, '$fechaInicio', '$fechaFin','No autorizado', '$descripcion', '$horaInicio', '$horaFin','$documento', '$idEscenario');";
+$insert = "INSERT INTO solicitud_prestamo (codigoSolicitud, fechaInicio, fechaFin, estado, descripcion, horaInicio, horaFin, documento, idEscenario) VALUES (null, '$fechaInicio', '$fechaFin','En revisión', '$descripcion', '$horaInicio', '$horaFin','$documento', '$idEscenario');";
 $conn->query($insert);
 
 echo 1;

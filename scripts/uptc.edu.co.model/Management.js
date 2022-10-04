@@ -66,8 +66,10 @@ var getCookie= function (){
     var cookies = document.cookie.split(';')
     for (let i = 0; i < cookies.length; i++) {
 
-        if ( cookies[i].substring(0, 7)=="userId="){
-            return cookies[i]
+        if(i==0 && cookies[i].substring(0, 7)=="userId="){
+            return cookies[i].substring(7, cookies[i].length)
+        } else if ( cookies[i].substring(0, 8)==" userId="){
+            return cookies[i].substring(8, cookies[i].length)
         }
     }
 
@@ -80,11 +82,12 @@ var datosFormulario = function () {
     var correo = document.getElementById("GenSolEmail");
     var tipoUsuario = document.getElementById("GenSolTipoUsuario");
     var cookie = getCookie()
+
     $.ajax({
         async: true,
         type: 'POST',
         data: {
-            userId: cookie.substring(7, cookie.length)
+            userId: cookie
         },
         url: 'scripts/uptc.edu.co.model/PHP/llenarDatosSolicitud.php',
         success: function (response) {
@@ -105,10 +108,11 @@ var prueba = function () {
     //document.getElementById("UserSession2").innerText="Laura Barrera"
 }
 var nombreUsuario = function () {
+    var cookie= getCookie()
     $.ajax({
         type: 'POST',
         data: {
-            userId: document.cookie.substring(7, document.cookie.length)
+            userId: cookie
         },
         url: 'scripts/uptc.edu.co.model/PHP/nombreUsuario.php',
         success: function (response) {
@@ -147,7 +151,7 @@ var cargarEscenarios = function () {
 var capturarDatosSolicitud = function () {
     var cookies=document.cookie.split(";")
 
-    var idSolicitante = cookies[0].substring(7,cookies[0].length)
+    var idSolicitante = getCookie()
     console.log(idSolicitante)
     //alert(idSolicitante)
     var seccional = document.getElementById("seccional").value;
