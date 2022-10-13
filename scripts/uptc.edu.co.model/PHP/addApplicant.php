@@ -22,4 +22,3 @@ if ($result->num_rows > 0) {
     mysqli_query($conn, $sql);
     echo 0;
 }
-?>

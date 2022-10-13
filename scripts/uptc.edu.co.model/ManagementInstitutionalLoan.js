@@ -25,14 +25,9 @@ var cargarEscenarios = function () {
 }
 
 var fechaActual = function () {
-    var fecha = new Date("2022-10-11");
-    var dia = fecha.getDay();
-    var mes = fecha.getMonth()+1;
-    var año = fecha.getFullYear();
-
-    var fechaActual = año+"-"+mes+"-"+dia;
+    var hoy = new Date();
+    var fechaActual = hoy.getFullYear() + '-' + ( hoy.getMonth() + 1 ) + '-' + hoy.getDate();
     return fechaActual;
-
 }
 
 var capDatosPI = function (){
