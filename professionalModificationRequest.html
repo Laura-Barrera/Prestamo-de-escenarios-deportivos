@@ -15,8 +15,9 @@
             crossorigin="anonymous"></script>
     <script src="scripts/uptc.edu.co.model/jquery-3.6.0.js"></script>
     <script src="scripts/uptc.edu.co.model/Management.js"></script>
+    <script src="scripts/uptc.edu.co.model/ManagementModifyCancelLoans.js"></script>
 </head>
-<body onload="nombreUsuario()">
+<body onload="nombreUsuario(),verModificaciones()">
 <header>
     <img src="media/logoHeader.png" rel="png" width="100%" height="155">
 </header>
@@ -78,21 +79,18 @@
                             <h4>PRÉSTAMOS A MODIFICAR</h4>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" id="tableModify">
                                 <thead>
                                 <tr class="text-center">
-                                    <th scope="col">Cod</th>
-                                    <th scope="col">Fecha Solicitud</th>
-                                    <th scope="col">Fecha Inicio</th>
-                                    <th scope="col">Fecha fin</th>
-                                    <th scope="col">Escenario deportivo</th>
-                                    <th scope="col">Seccional</th>
-                                    <th scope="col">Hora Inicio</th>
-                                    <th scope="col">Hora fin</th>
-                                    <th scope="col">Modificación</th>
+                                    <th scope="col">Num Modificación</th>
+                                    <th scope="col">Fecha Peticion Modificación</th>
+                                    <th scope="col">Estado Préstamo</th>
+                                    <th scope="col">Descripción de la modificación</th>
+                                    <th scope="col">Código del Préstamo</th>
                                     <th scope="col">Editar</th>
                                 </tr>
                                 </thead>
+                                <tbody id="tbodyModify"></tbody>
                             </table>
                         </div>
                     </div>

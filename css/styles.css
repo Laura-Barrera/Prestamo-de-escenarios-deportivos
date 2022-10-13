@@ -86,3 +86,7 @@ button.CalendarDay_button.CalendarDay_button_1.CalendarDay_button__default.Calen
 .calendar__last-days {
     opacity: .2;
 }
+
+textarea{
+    max-width: 100%;
+}

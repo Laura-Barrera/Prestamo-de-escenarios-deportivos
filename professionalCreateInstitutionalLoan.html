@@ -15,6 +15,7 @@
             crossorigin="anonymous"></script>
     <script src="scripts/uptc.edu.co.model/jquery-3.6.0.js"></script>
     <script src="scripts/uptc.edu.co.model/Management.js"></script>
+    <script src="scripts/uptc.edu.co.model/ManagementInstitutionalLoan.js"></script>
 </head>
 <body onload="nombreUsuario()">
 <header>
@@ -88,7 +89,7 @@
                                                 </div>
                                                 <div class="col-7">
                                                     <input type="datetime-local" placeholder="Fecha Inicio"
-                                                           class="form-control"><br>
+                                                           class="form-control" id="PIfechainicio"><br>
                                                 </div>
                                             </div>
 
@@ -98,7 +99,7 @@
                                                 </div>
                                                 <div class="col-7">
                                                     <input type="datetime-local" placeholder="Fecha Fin"
-                                                           class="form-control"><br>
+                                                           class="form-control" id="PIfechafin"><br>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -107,7 +108,7 @@
                                                 </div>
                                                 <div class="col-7">
                                                         <textarea class="form-control"
-                                                                  rows="4"></textarea><br>
+                                                                  rows="4" id="PIdescripcion"></textarea><br>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -115,11 +116,12 @@
                                                     <p style="font-size: medium">Seccional</p>
                                                 </div>
                                                 <div class="col-7">
-                                                    <select class="form-select" aria-label="seccional">
+                                                    <select class="form-select" aria-label="seccional" id="PIseccional" onchange="cargarEscenarios()">
                                                         <option selected>Seleccione...</option>
-                                                        <option value="1">Seleccione 1</option>
-                                                        <option value="2">Seleccione 2</option>
-                                                        <option value="3">Seleccione 3</option>
+                                                        <option value="Tunja">Tunja</option>
+                                                        <option value="Sogamoso">Sogamoso</option>
+                                                        <option value="Duitama">Duitama</option>
+                                                        <option value="Chiquinquira">Chiquinquira</option>
                                                     </select><br>
                                                 </div>
                                             </div>
@@ -128,11 +130,8 @@
                                                     <p style="font-size: medium">Escenario deportivo</p>
                                                 </div>
                                                 <div class="col-7">
-                                                    <select class="form-select" aria-label="tipo usuario">
+                                                    <select class="form-select" aria-label="tipo usuario" id="PIescenario">
                                                         <option selected>Seleccione...</option>
-                                                        <option value="1">Seleccione 1</option>
-                                                        <option value="2">Seleccione 2</option>
-                                                        <option value="3">Seleccione 3</option>
                                                     </select><br>
                                                 </div>
                                             </div>
@@ -140,7 +139,7 @@
                                             <div class="row align-items-center">
                                                 <div class="col-12 text-end">
                                                     <br>
-                                                    <button type="button" class="btn btn-warning">Crear</button>
+                                                    <button type="button" class="btn btn-warning" id="PIcrear" onclick="capDatosPI()">Crear</button>
                                                 </div>
                                             </div>
                                         </div>
