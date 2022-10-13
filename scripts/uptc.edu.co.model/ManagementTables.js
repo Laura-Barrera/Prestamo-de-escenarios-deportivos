@@ -58,7 +58,7 @@ var subirDocumentos = function () {
     var idUsuario = getCookie()
 
     $.ajax({
-        async: false,
+        async: true,
         type: 'POST',
         url: 'scripts/uptc.edu.co.model/PHP/documentosASubir.php',
         data: {
