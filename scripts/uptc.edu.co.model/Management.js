@@ -103,10 +103,35 @@ var datosFormulario = function () {
 
 }
 
-var prueba = function () {
-    alert(document.getElementById("fechaIni").value);
-    //document.getElementById("UserSession2").innerText="Laura Barrera"
+var fechaActual = function () {
+    var fecha = new Date("2022-10-11");
+    var dia = fecha.getDay();
+    var mes = fecha.getMonth()+1;
+    var año = fecha.getFullYear();
+
+    var fechaActual = año+"-"+mes+"-"+dia;
+    return fechaActual;
+
 }
+
+var comprobarDias = function (fechaInicio, fechaFin){
+    var aux = false;
+    if(fechaInicio.substring(5,7) === fechaActual().substring(5,7)){
+        if((fechaInicio.substring(8,fechaInicio.length) - fechaActual().substring(8,fechaActual().length)) >= 8){
+            aux = true;
+        }
+    } else if ((fechaInicio.substring(5,7) - fechaActual().substring(5,7)) === 1){
+        if ((fechaInicio.substring(8,fechaInicio.length) - fechaActual().substring(8,fechaActual().length)) <= 23){
+            aux = true;
+        }
+    } else if ((fechaInicio.substring(5,7) - fechaActual().substring(5,7)) > 1){
+        aux = true;
+    } else{
+        aux = false;
+    }
+    return aux;
+}
+
 var nombreUsuario = function () {
     var cookie= getCookie()
     $.ajax({
@@ -176,44 +201,62 @@ var capturarDatosSolicitud = function () {
 
     //alert(firma)
 
-    if (idSolicitante != "" && seccional != "" && escenario != "" && descripcion != "" && fechaInicio != "" && fechaFin != "" && horaInicio != "" && horaFin != "" && firma != "") {
-        $.ajax({
-            async: false,
-            type: 'POST',
-            data: {
-                idSolicitante: idSolicitante,
-                seccional: seccional,
-                escenario: escenario,
-                descripcion: descripcion,
-                fechaInicio: fechaInicio,
-                horaInicio: horaInicio,
-                fechaFin: fechaFin,
-                horaFin: horaFin,
-            },
-            url: 'scripts/uptc.edu.co.model/PHP/createLoanRequest.php',
-            success: function (response) {
-                if (response == 1){
-                    $.ajax({
-                        type: 'POST',
-                        data : form_data,
-                        contentType: false,
-                        processData: false,
-                        url: 'scripts/uptc.edu.co.model/PHP/firma.php',
-                        success: function (response){
-                            if (response==1){
-                                alert("Solicitud creada, ahora debe subir los documentos de soporte")
-                                window.location.href="applicantLoanRequestFiles.html"
-                            }else if (response == 2){
-                                alert("Error al cargar el archivo, revise la subida")
-                            }
+    if(idSolicitante != "" && seccional != "" && escenario != "" && descripcion != "" && fechaInicio != "" && fechaFin != "" && horaInicio != "" && horaFin != "" && firma != "") {
+        if (fechaActual() < fechaInicio && comprobarDias(fechaInicio, fechaFin) === true) {
+            if(fechaInicio > fechaFin && horaInicio > horaFin || fechaInicio > fechaFin || fechaInicio <= fechaFin && horaInicio >= horaFin) {
+                alert("Error en la fecha u hora seleccionada. Por favor verifique estos campos");
+            } else if ((parseInt(horaFin.substring(0,2),10) - parseInt(horaInicio.substring(0,2),10)) === 0){
+                alert("Error en las horas seleccionadas, recuerde que el prestamo de escenarios se realiza por mínimo 1 hora");
+            } else if ((parseInt(horaFin.substring(0,2),10) - parseInt(horaInicio.substring(0,2),10)) === 1 && (parseInt(horaFin.substring(3,6),10) - parseInt(horaInicio.substring(3,6),10)) < 0){
+                alert("Error en las horas seleccionadas, recuerde que el prestamo de escenarios se realiza por mínimo 1 hora");
+            } else if ((parseInt(horaInicio.substring(0,2),10)) < 8 || (parseInt(horaFin.substring(0,2),10) >= 22 && (parseInt(horaFin.substring(3,6),10) > 0))) {
+                alert("Error en las horas seleccionadas, la hora de inicio u hora de fin estan fuera del horario asignado para el prestamo de escenarios deportivos");
+            } else if (escenario.includes("diurno") === true && (parseInt(horaFin.substring(0,2),10) >= 18 && (parseInt(horaFin.substring(3,6),10) > 0))){
+                alert("La hora final del préstamo no corresponde a los horarios establecidos para el escenario seleccionado. Por favor verifique la hora final del préstamo")
+            } else if (escenario.includes("nocturno") === true && (parseInt(horaFin.substring(0,2),10) >= 22 && (parseInt(horaFin.substring(3,6),10) > 0))
+                || escenario.includes("nocturno") === true && (parseInt(horaInicio.substring(0,2),10) < 18)){
+                alert("Las horas del préstamo no corresponde a los horarios establecidos para el escenario seleccionado. Por favor verifique las horas del préstamo")
+            } else {
+                $.ajax({
+                    async: false,
+                    type: 'POST',
+                    data: {
+                        idSolicitante: idSolicitante,
+                        seccional: seccional,
+                        escenario: escenario,
+                        descripcion: descripcion,
+                        fechaInicio: fechaInicio,
+                        horaInicio: horaInicio,
+                        fechaFin: fechaFin,
+                        horaFin: horaFin,
+                    },
+                    url: 'scripts/uptc.edu.co.model/PHP/createLoanRequest.php',
+                    success: function (response) {
+                        if (response == 1) {
+                            $.ajax({
+                                type: 'POST',
+                                data: form_data,
+                                contentType: false,
+                                processData: false,
+                                url: 'scripts/uptc.edu.co.model/PHP/firma.php',
+                                success: function (response) {
+                                    if (response == 1) {
+                                        alert("Solicitud creada, ahora debe subir los documentos de soporte")
+                                        window.location.href = "applicantLoanRequestFiles.html"
+                                    } else if (response == 2) {
+                                        alert("Error al cargar el archivo, revise la subida")
+                                    }
+                                }
+                            });
+                        } else {
+                            alert("Error al cargar la solicitud")
                         }
-                    });
-                }else{
-                    alert("Error al cargar la solicitud")
-                }
+                    }
+                });
             }
-        });
-
+        }else {
+            alert("La fecha inicial seleccionada no cumple con los requesitos minimos para generar la soliciitud de préstamo de escenarios deportivos")
+        }
     }else{
         alert("Hay campos vacíos en el formulario")
     }
