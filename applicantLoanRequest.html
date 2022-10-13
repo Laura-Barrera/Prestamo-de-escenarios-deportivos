@@ -14,7 +14,7 @@
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
 </head>
-<body onload="datosFormulario()">
+<body onload="datosFormulario(), nombreUsuario()">
 <header>
     <img src="media/logoHeader.png" rel="png" width="100%" height="155">
 </header>
@@ -54,6 +54,16 @@
                                             <!--Falta lo del nombre e icono-->
                                         </ul>
                                     </div>
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" id="UserSession" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+                                            </a>
+                                            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                                <li><a class="dropdown-item" href="index.html">Cerrar Sesión</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
                                 </div>
                             </nav>
                         </div>
@@ -136,25 +146,12 @@
                                                     <p style="font-size: medium">Seccional</p>
                                                 </div>
                                                 <div class="col-7">
-                                                    <select class="form-select" aria-label="tipo usuario">
+                                                    <select class="form-select" aria-label="seccional" id="seccional" onchange="cargarEscenarios()">
                                                         <option selected>Seleccione...</option>
-                                                        <option value="1">Tunja</option>
-                                                        <option value="2">Sogamoso</option>
-                                                        <option value="3">Duitama</option>
-                                                        <option value="3">Chiquinquira</option>
-                                                    </select><br>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-5">
-                                                    <p style="font-size: medium">Seccional</p>
-                                                </div>
-                                                <div class="col-7">
-                                                    <select class="form-select" aria-label="tipo usuario">
-                                                        <option selected>Seleccione...</option>
-                                                        <option value="1">Seleccione 1</option>
-                                                        <option value="2">Seleccione 2</option>
-                                                        <option value="3">Seleccione 3</option>
+                                                        <option value="Tunja">Tunja</option>
+                                                        <option value="Sogamoso">Sogamoso</option>
+                                                        <option value="Duitama">Duitama</option>
+                                                        <option value="Chiquinquira">Chiquinquira</option>
                                                     </select><br>
                                                 </div>
                                             </div>
@@ -163,11 +160,9 @@
                                                     <p style="font-size: medium">Escenario deportivo</p>
                                                 </div>
                                                 <div class="col-7">
-                                                    <select class="form-select" aria-label="tipo usuario">
+                                                    <select class="form-select" aria-label="tipo usuario" id="escenario">
                                                         <option selected>Seleccione...</option>
-                                                        <option value="1">Cancha basket</option>
-                                                        <option value="2">Cancha Football</option>
-                                                        <option value="3">Cancha volleyball</option>
+
                                                     </select><br>
                                                 </div>
                                             </div>
@@ -177,7 +172,7 @@
                                                 </div>
                                                 <div class="col-7">
                                                         <textarea class="form-control"
-                                                                  rows="4"></textarea><br>
+                                                                  rows="4" id="GenSolDescripcion"></textarea><br>
                                                 </div>
                                             </div>
 
@@ -187,7 +182,7 @@
                                                 </div>
                                                 <div class="col-7">
                                                     <input type="datetime-local" placeholder="Fecha Inicio"
-                                                           class="form-control" onchange="prueba()" id="fechaIni"><br>
+                                                           class="form-control" id="GenSolFechaIni"><br>
                                                 </div>
                                             </div>
 
@@ -197,7 +192,7 @@
                                                 </div>
                                                 <div class="col-7">
                                                     <input type="datetime-local" placeholder="Fecha Fin"
-                                                           class="form-control"><br>
+                                                           class="form-control" id="GenSolFechaFin"><br>
                                                 </div>
                                             </div>
 
@@ -206,7 +201,7 @@
                                                     <p style="font-size: medium">Firma</p>
                                                 </div>
                                                 <div class="col-7">
-                                                    <input type="file" class="form-control" accept="image/*">
+                                                    <input type="file" class="form-control" accept="image/*" id="GenSolFirma" name="firma">
                                                 </div>
                                             </div>
 
@@ -215,7 +210,7 @@
                                                     <br>
                                                     <a>
                                                         <button type="button" href="applicantLoanRequestFiles.html"
-                                                                class="btn btn-warning" onclick="prueba()">Siguiente
+                                                                class="btn btn-warning" onclick="capturarDatosSolicitud()">Siguiente
                                                             &#8594
                                                         </button>
                                                     </a>
@@ -242,7 +237,7 @@
                     Universitario</p>
             </div>
             <div class="col-md-4">
-                <img src="media/logoBienestar.png" rel="png" width="220" height="70">
+                <img src="media/logoBienestar.png" rel="png" width="220" height="70" id="123">
             </div>
         </div>
     </div>
