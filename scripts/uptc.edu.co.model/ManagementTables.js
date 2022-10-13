@@ -84,7 +84,7 @@ var subirDocumentos = function () {
                 contentType: false,
                 processData: false,
                 success: function (response) {
-                    alert(response)
+                    window.location.href="applicantMainView.html"
                 }
             });
         }
