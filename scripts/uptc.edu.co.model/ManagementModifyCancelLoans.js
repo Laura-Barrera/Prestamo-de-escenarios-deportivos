@@ -31,10 +31,15 @@ var verModificaciones = function (){
                 td4.innerText=valor[i][4];
                 tr.append(td4);
 
-                var td9 = document.createElement("td");
-                td9.innerHTML = "<a href='applicantLoanRequest.html'><button type='button' id='modificar' style='border-color: white' onclick='createCookie()'><img src=\"media/editar.png\" width='25px'></button></a>";
-                tr.append(td9);
+                if (valor[i][5] == 0){
+                    var td5 = document.createElement("td");
+                    td5.innerHTML = "<button type='button' id='modificar' style='border-color: white' onclick='crearCookie("+valor[i][0]+"), modificar()'><img src=\"media/editar.png\" width='25px'></button></a>";
+                    tr.append(td5);
 
+                    var td6 = document.createElement("td");
+                    td6.innerText="";
+                    tr.append(td6);
+                }
                 tbody.append(tr);
             }
             table.append(tbody);
@@ -43,8 +48,8 @@ var verModificaciones = function (){
 }
 
 var verCancelaciones = function (){
-    var table = document.getElementById("tableCancel");
-    var tbody = document.getElementById("tbodyCancel");
+    var table = document.getElementById("tableModify");
+    var tbody = document.getElementById("tbodyModify");
 
     $.ajax({
         async: true,
@@ -71,10 +76,19 @@ var verCancelaciones = function (){
                 td3.innerText=valor[i][3];
                 tr.append(td3);
 
-                var td9 = document.createElement("td");
-                td9.innerHTML = "<button type='button' id='cancelar' style='border-color: white' onclick='crearCookie("+valor[i][0]+"), cancelar()'><img src=\"media/aprobar.png\" width='35px'></button>";
-                tr.append(td9);
+                var td4 = document.createElement("td");
+                td4.innerText=valor[i][4];
+                tr.append(td4);
 
+                if (valor[i][5] == 1){
+                    var td5 = document.createElement("td");
+                    td5.innerText="";
+                    tr.append(td5);
+
+                    var td6 = document.createElement("td");
+                    td6.innerHTML = "<button type='button' id='cancelar' style='border-color: white' onclick='crearCookie("+valor[i][0]+"), cancelar()'><img src=\"media/aprobar.png\" width='35px'></button>";
+                    tr.append(td6);
+                }
                 tbody.append(tr);
             }
             table.append(tbody);
@@ -105,39 +119,35 @@ var cancelar = function (){
         },
         url: 'scripts/uptc.edu.co.model/PHP/approveCancel.php',
         success: function (response) {
-
+            window.location.href = "professionalRequests.html"
         }
+
     });
 
 }
 
 var modificar = function (){
     var cookies = document.cookie.split(';');
-    var numCancelacion;
+    var numModificación;
     for (let i = 0; i < cookies.length; i++) {
         if (i == 0 && cookies[i].substring(0, 3) == "Id=") {
-            numCancelacion = cookies[i].substring(3, cookies[i].length)
+            numModificación = cookies[i].substring(3, cookies[i].length)
         } else if (cookies[i].substring(0, 4) == " Id=") {
-            numCancelacion = cookies[i].substring(4, cookies[i].length)
+            numModificación = cookies[i].substring(4, cookies[i].length)
         }
     }
-
-    var pagina = window.location.href = "applicantLoanRequest.html"
 
     $.ajax({
         async: true,
         type: 'POST',
         data: {
-            numCancelacion: numCancelacion,
+            numModificación: numModificación,
         },
-        url: 'scripts/uptc.edu.co.model/PHP/infoCancel.php',
+        url: 'scripts/uptc.edu.co.model/PHP/dataModification.php',
         success: function (response) {
-            valor = JSON.parse(response);
-            title.setAttribute("text", "numCancelacion");
-            text.setAttribute("text", valor[0]);
+            valor = response
+            console.log(valor);
+
         }
     });
-
-    var div = document.getElementById("divTable");
-    div.append(pagina);
 }

@@ -170,6 +170,8 @@ var saveCancelation = function (){
             codigoPrestamo = cookies[i].substring(8, cookies[i].length)
         }
     }
+
+    var descripcion = "Solicitud Cancelacion";
     var fechaPeticion = fechaActual();
     var estadoCancelacion = "Pendiente";
 
@@ -179,6 +181,7 @@ var saveCancelation = function (){
             url: 'scripts/uptc.edu.co.model/PHP/createCancelation.php',
             data: {
                 numCancelacion: 0,
+                descripcion: descripcion,
                 fechaPeticion: fechaPeticion,
                 estadoCancelacion: estadoCancelacion,
                 codigoPrestamo: codigoPrestamo,
