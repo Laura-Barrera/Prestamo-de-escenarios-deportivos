@@ -145,6 +145,7 @@ var nombreUsuario = function () {
 var cargarEscenarios = function () {
     var seccional = document.getElementById("seccional").value;
     $.ajax({
+        async: false,
         type: 'POST',
         data: {
             sede: seccional

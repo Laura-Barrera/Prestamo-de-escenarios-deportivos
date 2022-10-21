@@ -69,7 +69,7 @@ var solicitudes = function (){
                     tr.append(td9);
 
                     var td10 = document.createElement("td");
-                    td10.innerHTML= "<button type='button' style='border-color: white' onclick='createCookie("+valor[i][0]+"), saveCancelation()'><img src=\"media/cancelar.png\" width='25px'></button></a>";
+                    td10.innerHTML= "<button type='button' style='border-color: white' onclick='createCookie("+valor[i][0]+")', saveCancelation()'><img src=\"media/cancelar.png\" width='25px'></button></a>";
                     tr.append(td10);
                 }
 
