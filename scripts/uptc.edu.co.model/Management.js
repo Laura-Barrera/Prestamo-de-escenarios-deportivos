@@ -1,3 +1,4 @@
+
 var getInicioSesion = function () {
 
     var LOGusuario = document.getElementById("LOGusuario").value
@@ -177,7 +178,6 @@ var capturarDatosSolicitud = function () {
     var cookies=document.cookie.split(";")
 
     var idSolicitante = getCookie()
-    console.log(idSolicitante)
     //alert(idSolicitante)
     var seccional = document.getElementById("seccional").value;
     //alert(seccional);

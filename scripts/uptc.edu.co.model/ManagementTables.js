@@ -67,26 +67,30 @@ var subirDocumentos = function () {
         success: function (response) {
             response = JSON.parse(response)
             var form_data = new FormData();
+            var count=0;
             for (let i = 0; i < response.length; i++) {
 
                 var doc = document.getElementById(response[i] + "doc").files[0]
                 if (doc != null) {
                     form_data.append(""+response[i], doc)
                 } else {
+                    count+=1;
                     alert("Falta el siguiente documento: " + response[i])
                 }
             }
 
-            $.ajax({
-                type: 'POST',
-                url: 'scripts/uptc.edu.co.model/PHP/subirDocumentos.php',
-                data: form_data,
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    window.location.href="applicantMainView.html"
-                }
-            });
+            if (count==0){
+                $.ajax({
+                    type: 'POST',
+                    url: 'scripts/uptc.edu.co.model/PHP/subirDocumentos.php',
+                    data: form_data,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        window.location.href="applicantMainView.html"
+                    }
+                });
+            }
         }
     });
 

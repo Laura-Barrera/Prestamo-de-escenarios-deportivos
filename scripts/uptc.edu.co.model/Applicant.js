@@ -22,7 +22,7 @@ Applicant.prototype.addSolicitante = function () {
         type: 'POST',
         url: 'scripts/uptc.edu.co.model/PHP/addApplicant.php',
         data: {
-            numUsuario: null,
+            numUsuario: 0,
             documento: this.numeroDocumento,
             nombre: this.nombre,
             apellido: this.apellido,
