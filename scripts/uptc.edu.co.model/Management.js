@@ -257,8 +257,11 @@ var capturarDatosSolicitud = function () {
             }
         } else {
             alert("La fecha inicial seleccionada no cumple con los requesitos minimos para generar la soliciitud de préstamo de escenarios deportivos")
+            return false;
         }
     } else {
-        alert("Hay campos vacíos en el formulario")
+        //alert("Hay campos vacíos en el formulario")
+        return true;
     }
+    return false;
 }
