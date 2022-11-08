@@ -68,6 +68,7 @@ var subirDocumentos = function () {
             response = JSON.parse(response)
             var form_data = new FormData();
             var count=0;
+            var docsFaltantes="Faltan los siguientes documentos: "
             for (let i = 0; i < response.length; i++) {
 
                 var doc = document.getElementById(response[i] + "doc").files[0]
@@ -75,7 +76,7 @@ var subirDocumentos = function () {
                     form_data.append(""+response[i], doc)
                 } else {
                     count+=1;
-                    alert("Falta el siguiente documento: " + response[i])
+                    docsFaltantes+=response[i]+", "
                 }
             }
 
@@ -87,9 +88,23 @@ var subirDocumentos = function () {
                     contentType: false,
                     processData: false,
                     success: function (response) {
-                        window.location.href="applicantMainView.html"
+                        Swal.fire(
+                            'Excelente',
+                            'Documentos subidos, ahora debe esperar la aprobación de su solicitud de préstamo, esta se le notificará al correo',
+                            'success'
+                        ).then(function (){
+                            window.location.href="applicantMainView.html"
+                        })
+
                     }
                 });
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: docsFaltantes.substring(0, docsFaltantes.length-2),
+                    footer: '<a></a>'
+                })
             }
         }
     });

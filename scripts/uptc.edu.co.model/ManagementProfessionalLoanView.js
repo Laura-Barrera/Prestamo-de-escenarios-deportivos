@@ -158,11 +158,36 @@ var aprobar=function (){
         success: function (response){
             if (response==1){
                 //espacio para correo que se aprobó
-                alert("aprobado")
-                window.location.href="professionalLoanRequestView.html"
+                Swal.fire({
+                    title: '¿Desea aprobar este préstamo?',
+                    text: "Déspues de aprobado no es posible eliminar la aprobación",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si, aprobar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                            'Préstamo aprobado',
+                            'Se le notificará al solicitante a través del correo la aprobación de su solicitud',
+                            'success'
+                        ).then(function (){
+                            window.location.href="professionalLoanRequestView.html"
+                        })
+
+                    }
+                })
+
             }else if(response==2){
                 //notificar por correo lo sucedido
-                alert("Ya hay un prestamo aprobado que se sobrepone por las horas")
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Ya hay un prestamo aprobado que se sobrepone con las horas de esta solicitud',
+                    footer: '<a></a>'
+                })
             }
         }
     })
@@ -179,11 +204,35 @@ var denegar=function (){
         success: function (response){
             if (response==1){
                 //espacio para correo explicando denegación
-                alert("Cancelado exitosamente")
-                window.location.href="professionalLoanRequestView.html"
+                Swal.fire({
+                    title: '¿Desea cancelar este préstamo?',
+                    text: "Déspues de cancelado no es posible eliminar la cancelación",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si, cancelar',
+                    cancelButtonText: 'Volver'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                            'Préstamo cancelado',
+                            'Se le notificará al solicitante a través del correo la cancelación de su solicitud',
+                            'success'
+                        ).then(function (){
+                            window.location.href="professionalLoanRequestView.html"
+                        })
+                    }
+                })
+
             }else{
                 //notificar por correo lo sucedido
-                alert("no se canceló")
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'El prestamo no ha sido cancelado',
+                    footer: '<a></a>'
+                })
             }
         }
     })

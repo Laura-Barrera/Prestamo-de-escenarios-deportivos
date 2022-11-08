@@ -36,10 +36,15 @@ Applicant.prototype.addSolicitante = function () {
         },
         success: function (response) {
             if (response==0){
-                alert("Usuario Creado")
-                window.location.href = "index.html";
+                Swal.fire(
+                    'Usuario creado!',
+                    'El usuario ha sido creado correctamente',
+                    'success'
+                ).then(function (){
+                    window.location.href = "index.html";
+                })
             }else{
-                alert("Error: Documento, usuario o correo ya existe en el sistema")
+                Swal.fire('Error: documento, usuario o correo ya existe en el sistema')
             }
         }
     });
