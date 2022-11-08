@@ -35,7 +35,6 @@ Applicant.prototype.addSolicitante = function () {
             tipoPersona: this._tipoPersona
         },
         success: function (response) {
-            alert(response)
             if (response==0){
                 alert("Usuario Creado")
                 window.location.href = "index.html";

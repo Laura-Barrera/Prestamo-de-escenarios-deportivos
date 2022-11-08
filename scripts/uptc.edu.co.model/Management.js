@@ -1,11 +1,10 @@
-
 var getInicioSesion = function () {
 
     var LOGusuario = document.getElementById("LOGusuario").value
     var LOGcontrasena = document.getElementById("LOGcontrasena").value
     var datos = []
     if (LOGusuario == "" || LOGcontrasena == "") {
-        alert("usuario o contraseña vacíos")
+        return true;
     } else {
         $.ajax({
             async: false,
@@ -19,7 +18,7 @@ var getInicioSesion = function () {
                 datos = JSON.parse(response)
                 if (!(response == 1)) {
                     document.cookie = 'userId=' + datos[3] + ';path=/';
-                    document.cookie='userIdTest=' + 'holaMundo' + ';path=/'
+                    document.cookie = 'userIdTest=' + 'holaMundo' + ';path=/'
                     if (datos[2] == "NULL") {
 
                         window.location.href = "applicantMainView.html";
@@ -27,6 +26,7 @@ var getInicioSesion = function () {
 
                     } else {
                         window.location.href = "professionalMainView.html";
+
                     }
                 } else {
                     alert("Usuario o contraseña incorrectos")
@@ -34,7 +34,7 @@ var getInicioSesion = function () {
             }
         });
     }
-
+    return false;
 }
 var crearSolicitante = function () {
     var numeroDocumento = document.getElementById("REGdocumento").value
@@ -50,7 +50,7 @@ var crearSolicitante = function () {
 
         var solicitante = new Applicant(numeroDocumento, nombre, apellido, direccion, telefono, correo, usuario, contrasena, tipoPersona);
         var response = solicitante.addSolicitante();
-
+        return false;
         /*if (response == 1) {
             alert("Usuario creado exitosamente");
             window.location.replace("../index.html");
@@ -58,18 +58,19 @@ var crearSolicitante = function () {
             alert("Error al crear el usuario")
         }*/
     } else {
-        alert("Alguno de los campos está vacío o no fue seleccionado");
+        //alert("Alguno de los campos está vacío o no fue seleccionado");
+        return true;
     }
 
 }
 
-var getCookie= function (){
+var getCookie = function () {
     var cookies = document.cookie.split(';')
     for (let i = 0; i < cookies.length; i++) {
 
-        if(i==0 && cookies[i].substring(0, 7)=="userId="){
+        if (i == 0 && cookies[i].substring(0, 7) == "userId=") {
             return cookies[i].substring(7, cookies[i].length)
-        } else if ( cookies[i].substring(0, 8)==" userId="){
+        } else if (cookies[i].substring(0, 8) == " userId=") {
             return cookies[i].substring(8, cookies[i].length)
         }
     }
@@ -107,34 +108,34 @@ var datosFormulario = function () {
 var fechaActual = function () {
     var fecha = new Date("2022-10-11");
     var dia = fecha.getDay();
-    var mes = fecha.getMonth()+1;
+    var mes = fecha.getMonth() + 1;
     var año = fecha.getFullYear();
 
-    var fechaActual = año+"-"+mes+"-"+dia;
+    var fechaActual = año + "-" + mes + "-" + dia;
     return fechaActual;
 
 }
 
-var comprobarDias = function (fechaInicio, fechaFin){
+var comprobarDias = function (fechaInicio, fechaFin) {
     var aux = false;
-    if(fechaInicio.substring(5,7) === fechaActual().substring(5,7)){
-        if((fechaInicio.substring(8,fechaInicio.length) - fechaActual().substring(8,fechaActual().length)) >= 8){
+    if (fechaInicio.substring(5, 7) === fechaActual().substring(5, 7)) {
+        if ((fechaInicio.substring(8, fechaInicio.length) - fechaActual().substring(8, fechaActual().length)) >= 8) {
             aux = true;
         }
-    } else if ((fechaInicio.substring(5,7) - fechaActual().substring(5,7)) === 1){
-        if ((fechaInicio.substring(8,fechaInicio.length) - fechaActual().substring(8,fechaActual().length)) <= 23){
+    } else if ((fechaInicio.substring(5, 7) - fechaActual().substring(5, 7)) === 1) {
+        if ((fechaInicio.substring(8, fechaInicio.length) - fechaActual().substring(8, fechaActual().length)) <= 23) {
             aux = true;
         }
-    } else if ((fechaInicio.substring(5,7) - fechaActual().substring(5,7)) > 1){
+    } else if ((fechaInicio.substring(5, 7) - fechaActual().substring(5, 7)) > 1) {
         aux = true;
-    } else{
+    } else {
         aux = false;
     }
     return aux;
 }
 
 var nombreUsuario = function () {
-    var cookie= getCookie()
+    var cookie = getCookie()
     $.ajax({
         type: 'POST',
         data: {
@@ -175,7 +176,7 @@ var cargarEscenarios = function () {
 }
 
 var capturarDatosSolicitud = function () {
-    var cookies=document.cookie.split(";")
+    var cookies = document.cookie.split(";")
 
     var idSolicitante = getCookie()
     //alert(idSolicitante)
@@ -201,20 +202,20 @@ var capturarDatosSolicitud = function () {
 
     //alert(firma)
 
-    if(idSolicitante != "" && seccional != "" && escenario != "" && descripcion != "" && fechaInicio != "" && fechaFin != "" && horaInicio != "" && horaFin != "" && firma != "") {
+    if (idSolicitante != "" && seccional != "" && escenario != "" && descripcion != "" && fechaInicio != "" && fechaFin != "" && horaInicio != "" && horaFin != "" && firma != "") {
         if (fechaActual() < fechaInicio && comprobarDias(fechaInicio, fechaFin) === true) {
-            if(fechaInicio > fechaFin && horaInicio > horaFin || fechaInicio > fechaFin || fechaInicio <= fechaFin && horaInicio >= horaFin) {
+            if (fechaInicio > fechaFin && horaInicio > horaFin || fechaInicio > fechaFin || fechaInicio <= fechaFin && horaInicio >= horaFin) {
                 alert("Error en la fecha u hora seleccionada. Por favor verifique estos campos");
-            } else if ((parseInt(horaFin.substring(0,2),10) - parseInt(horaInicio.substring(0,2),10)) === 0){
+            } else if ((parseInt(horaFin.substring(0, 2), 10) - parseInt(horaInicio.substring(0, 2), 10)) === 0) {
                 alert("Error en las horas seleccionadas, recuerde que el prestamo de escenarios se realiza por mínimo 1 hora");
-            } else if ((parseInt(horaFin.substring(0,2),10) - parseInt(horaInicio.substring(0,2),10)) === 1 && (parseInt(horaFin.substring(3,6),10) - parseInt(horaInicio.substring(3,6),10)) < 0){
+            } else if ((parseInt(horaFin.substring(0, 2), 10) - parseInt(horaInicio.substring(0, 2), 10)) === 1 && (parseInt(horaFin.substring(3, 6), 10) - parseInt(horaInicio.substring(3, 6), 10)) < 0) {
                 alert("Error en las horas seleccionadas, recuerde que el prestamo de escenarios se realiza por mínimo 1 hora");
-            } else if ((parseInt(horaInicio.substring(0,2),10)) < 8 || (parseInt(horaFin.substring(0,2),10) >= 22 && (parseInt(horaFin.substring(3,6),10) > 0))) {
+            } else if ((parseInt(horaInicio.substring(0, 2), 10)) < 8 || (parseInt(horaFin.substring(0, 2), 10) >= 22 && (parseInt(horaFin.substring(3, 6), 10) > 0))) {
                 alert("Error en las horas seleccionadas, la hora de inicio u hora de fin estan fuera del horario asignado para el prestamo de escenarios deportivos");
-            } else if (escenario.includes("diurno") === true && (parseInt(horaFin.substring(0,2),10) >= 18 && (parseInt(horaFin.substring(3,6),10) > 0))){
+            } else if (escenario.includes("diurno") === true && (parseInt(horaFin.substring(0, 2), 10) >= 18 && (parseInt(horaFin.substring(3, 6), 10) > 0))) {
                 alert("La hora final del préstamo no corresponde a los horarios establecidos para el escenario seleccionado. Por favor verifique la hora final del préstamo")
-            } else if (escenario.includes("nocturno") === true && (parseInt(horaFin.substring(0,2),10) >= 22 && (parseInt(horaFin.substring(3,6),10) > 0))
-                || escenario.includes("nocturno") === true && (parseInt(horaInicio.substring(0,2),10) < 18)){
+            } else if (escenario.includes("nocturno") === true && (parseInt(horaFin.substring(0, 2), 10) >= 22 && (parseInt(horaFin.substring(3, 6), 10) > 0))
+                || escenario.includes("nocturno") === true && (parseInt(horaInicio.substring(0, 2), 10) < 18)) {
                 alert("Las horas del préstamo no corresponde a los horarios establecidos para el escenario seleccionado. Por favor verifique las horas del préstamo")
             } else {
                 $.ajax({
@@ -254,10 +255,10 @@ var capturarDatosSolicitud = function () {
                     }
                 });
             }
-        }else {
+        } else {
             alert("La fecha inicial seleccionada no cumple con los requesitos minimos para generar la soliciitud de préstamo de escenarios deportivos")
         }
-    }else{
+    } else {
         alert("Hay campos vacíos en el formulario")
     }
 }
