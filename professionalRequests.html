@@ -17,7 +17,7 @@
     <script src="scripts/uptc.edu.co.model/Management.js"></script>
     <script src="scripts/uptc.edu.co.model/ManagementModifyCancelLoans.js"></script>
 </head>
-<body onload="nombreUsuario(), verCancelaciones()">
+<body onload="nombreUsuario(),verModificaciones(), verCancelaciones()">
 <header>
     <img src="media/logoHeader.png" rel="png" width="100%" height="155">
 </header>
@@ -45,13 +45,8 @@
                                                     de Préstamo </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="professionalModificationRequest.html">Solicitudes
-                                                    de Modificación</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link active" style="color:black; background-color:#FFE602"
-                                                   href="professionalCancellationRequest.html">Solicitudes de
-                                                    Cancelacion</a>
+                                                <a class="nav-link active" style="color:black; background-color:#FFE602" href="professionalRequests.html">Solicitudes
+                                                    de Modificación y Cancelación</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="professionalCalendarView.html">Calendario
@@ -73,26 +68,26 @@
                                     </ul>
                                 </div>
                             </nav>
-                            &nbsp
-                            <div class="content" id="cancelationsView">
-                                <div class="text-center">
-                                    <h4>PRÉSTAMOS A CANCELAR</h4>
-                                </div>
-                                <div class="table-responsive" id="divTable">
-                                    <table class="table table-bordered" id="tableCancel">
-                                        <thead>
-                                        <tr class="text-center">
-                                            <th scope="col">Num Cancelación</th>
-                                            <th scope="col">Fecha Peticion Cancelación</th>
-                                            <th scope="col">Estado Préstamo</th>
-                                            <th scope="col">Código del Préstamo</th>
-                                            <th scope="col">Cancelar</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody id="tbodyCancel"></tbody>
-                                    </table>
-                                </div>
-                            </div>
+                        </div>
+                        &nbsp
+                        <div class="text-center" id="title">
+                            <h4>PRÉSTAMOS A MODIFICAR Y CANCELAR</h4>
+                        </div>
+                        <div class="table-responsive" id="mainTable">
+                            <table class="table table-bordered" id="tableModify">
+                                <thead>
+                                <tr class="text-center">
+                                    <th scope="col">Num Modificación</th>
+                                    <th scope="col">Fecha Peticion Modificación</th>
+                                    <th scope="col">Estado Préstamo</th>
+                                    <th scope="col">Descripción de la modificación</th>
+                                    <th scope="col">Código del Préstamo</th>
+                                    <th scope="col">Editar</th>
+                                    <th scope="col">Cancelar</th>
+                                </tr>
+                                </thead>
+                                <tbody id="tbodyModify"></tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

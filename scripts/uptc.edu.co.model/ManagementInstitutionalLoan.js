@@ -25,14 +25,9 @@ var cargarEscenarios = function () {
 }
 
 var fechaActual = function () {
-    var fecha = new Date("2022-10-11");
-    var dia = fecha.getDay();
-    var mes = fecha.getMonth()+1;
-    var año = fecha.getFullYear();
-
-    var fechaActual = año+"-"+mes+"-"+dia;
+    var hoy = new Date();
+    var fechaActual = [hoy.getFullYear(), hoy.getMonth() + 1, hoy.getDate()]
     return fechaActual;
-
 }
 
 var capDatosPI = function (){
@@ -45,7 +40,7 @@ var capDatosPI = function (){
     var escenario = document.getElementById("PIescenario").value;
 
     if (fechaInicio!="" && fechaFin!="" && horaInicio!="" && horaFin!="" && descripcion!="" && seccional!="" && escenario!=""){
-        if (fechaActual() < fechaInicio) {
+        if (fechaActual()[0] <= fechaInicio.substring(0,4) && fechaActual()[1] <= fechaInicio.substring(5,7) && (fechaInicio.substring(8,10) - fechaActual()[2] >= 8) || (fechaInicio.substring(8,10) - fechaActual()[2] >= -8) ) {
             if(fechaInicio > fechaFin && horaInicio > horaFin || fechaInicio > fechaFin || fechaInicio <= fechaFin && horaInicio >= horaFin) {
                 alert("Error en la fecha u hora seleccionada. Por favor verifique estos campos");
             } else if ((parseInt(horaFin.substring(0,2),10) - parseInt(horaInicio.substring(0,2),10)) === 0){
@@ -78,7 +73,7 @@ var capDatosPI = function (){
                         if (response == 1) {
                             alert("Préstamo creado correctamente")
                             window.location.href = "professionalCreateInstitutionalLoan.html"
-                        } else {
+                        } else{
                             alert("Error en el almacenamiento del préstamo institucional, intente nuevamente");
                         }
                     }

@@ -1,5 +1,6 @@
 <?php
 $numCancelacion = $_POST["numCancelacion"];
+$descripcion = $_POST["descripcion"];
 $fechaPeticion = $_POST["fechaPeticion"];
 $estadoCancelacion = $_POST["estadoCancelacion"];
 $codigoPrestamo = $_POST["codigoPrestamo"];
@@ -10,7 +11,7 @@ $result = $conn->query($count);
 $row = $result->fetch_assoc();
 
 if($row == 0){
-    $insert = "insert into cancelacion values ('$numCancelacion','$fechaPeticion','$estadoCancelacion','$codigoPrestamo')";
+    $insert = "insert into cancelacion values ('$numCancelacion','$descripcion','$fechaPeticion','$estadoCancelacion','$codigoPrestamo')";
     $conn->query($insert);
     echo 1;
 } else if ($row >= 1){

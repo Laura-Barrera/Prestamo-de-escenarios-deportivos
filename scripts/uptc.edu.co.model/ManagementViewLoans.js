@@ -63,13 +63,13 @@ var solicitudes = function (){
                 td8.innerText=valor[i][8];
                 tr.append(td8);
 
-                if(valor[i][7] != "No autorizado" & valor[i][7] != "Cancelado" & valor[i][1] >= fechaActual()){
+                if(valor[i][7] != "No autorizado" & valor[i][7] != "Cancelado" & fechaActual()[0] <= valor[i][1].substring(0,4) && fechaActual()[1] <= valor[i][1].substring(5,7) && (valor[i][1].substring(8,10) - fechaActual()[2] >= 8) || (valor[i][1].substring(8,10) - fechaActual()[2] >= -8) ){
                     var td9 = document.createElement("td");
                     td9.innerHTML = "<a href='applicantModifyLoan.html'><button type='button' id='modificar' style='border-color: white' onclick='createCookie("+valor[i][0]+")'><img src=\"media/editar.png\" width='25px'></button></a>";
                     tr.append(td9);
 
                     var td10 = document.createElement("td");
-                    td10.innerHTML= "<button type='button' style='border-color: white' onclick='createCookie("+valor[i][0]+"), saveCancelation()'><img src=\"media/cancelar.png\" width='25px'></button></a>";
+                    td10.innerHTML= "<button type='button' style='border-color: white' onclick='createCookie("+valor[i][0]+"); saveCancelation()'><img src=\"media/cancelar.png\" width='25px'></button></a>";
                     tr.append(td10);
                 }
 
@@ -110,14 +110,9 @@ var deleteCookie = function (){
 }
 
 var fechaActual = function () {
-    var fecha = new Date("2022-10-11");
-    var dia = fecha.getDay();
-    var mes = fecha.getMonth()+1;
-    var año = fecha.getFullYear();
-
-    var fechaActual = año+"-"+mes+"-"+dia;
+    var hoy = new Date();
+    var fechaActual = [hoy.getFullYear(), hoy.getMonth() + 1, hoy.getDate()]
     return fechaActual;
-
 }
 
 var saveModification = function (){
@@ -131,7 +126,7 @@ var saveModification = function (){
         }
     }
     var descripcion = document.getElementById("textModification").value;
-    var fechaPeticion = fechaActual();
+    var fechaPeticion = fechaActual()[0]+'-'+fechaActual()[1]+'-'+fechaActual()[2];
     var estadoModificacion = "Pendiente";
 
     if (descripcion != ""){
@@ -175,28 +170,31 @@ var saveCancelation = function (){
             codigoPrestamo = cookies[i].substring(8, cookies[i].length)
         }
     }
-    var fechaPeticion = fechaActual();
+
+    var descripcion = "Solicitud Cancelacion";
+    var fechaPeticion = fechaActual()[0]+'-'+fechaActual()[1]+'-'+fechaActual()[2];
     var estadoCancelacion = "Pendiente";
 
     $.ajax({
-            async: false,
-            type: 'POST',
-            url: 'scripts/uptc.edu.co.model/PHP/createCancelation.php',
-            data: {
-                numCancelacion: 0,
-                fechaPeticion: fechaPeticion,
-                estadoCancelacion: estadoCancelacion,
-                codigoPrestamo: codigoPrestamo,
-            },
-            success: function (response) {
-                if (response == 1) {
-                    alert("Solicitud de cancelacion creada con exito")
-                } else if (response == 2){
-                    alert("La cancelacion no se puede almacenar porque ya existe una solicitud de cancelacion para la misma solicitud o préstamo")
-                } else {
-                    alert("Error, no se ha podido guardar con exito la solicitud de cancelación")
-                }
+        async: false,
+        type: 'POST',
+        url: 'scripts/uptc.edu.co.model/PHP/createCancelation.php',
+        data: {
+            numCancelacion: 0,
+            descripcion: descripcion,
+            fechaPeticion: fechaPeticion,
+            estadoCancelacion: estadoCancelacion,
+            codigoPrestamo: codigoPrestamo,
+        },
+        success: function (response) {
+            if (response == 1) {
+                alert("Solicitud de cancelacion creada con exito")
+            } else if (response == 2){
+                alert("La cancelacion no se puede almacenar porque ya existe una solicitud de cancelacion para la misma solicitud o préstamo")
+            } else {
+                alert("Error, no se ha podido guardar con exito la solicitud de cancelación")
             }
+        }
 
-        });
+    });
 }

@@ -29,7 +29,7 @@ var getInicioSesion = function () {
                     }).then(function (){
                         if (datos[2] == "NULL") {
 
-                           window.location.href = "applicantMainView.html";
+                            window.location.href = "applicantMainView.html";
 
 
 
@@ -121,15 +121,11 @@ var datosFormulario = function () {
 
 }
 
+
 var fechaActual = function () {
-    var fecha = new Date("2022-10-11");
-    var dia = fecha.getDay();
-    var mes = fecha.getMonth() + 1;
-    var año = fecha.getFullYear();
-
-    var fechaActual = año + "-" + mes + "-" + dia;
+    var hoy = new Date();
+    var fechaActual = [hoy.getFullYear(), hoy.getMonth() + 1, hoy.getDate()]
     return fechaActual;
-
 }
 
 var comprobarDias = function (fechaInicio, fechaFin) {
@@ -219,7 +215,7 @@ var capturarDatosSolicitud = function () {
     //alert(firma)
 
     if (idSolicitante != "" && seccional != "" && escenario != "" && descripcion != "" && fechaInicio != "" && fechaFin != "" && horaInicio != "" && horaFin != "" && firma != "") {
-        if (fechaActual() < fechaInicio && comprobarDias(fechaInicio, fechaFin) === true) {
+        if (fechaActual()[0] <= fechaInicio.substring(0,4) && fechaActual()[1] <= fechaInicio.substring(5,7) && (fechaInicio.substring(8,10) - fechaActual()[2] >= 8) || (fechaInicio.substring(8,10) - fechaActual()[2] >= -8) ) {
             if (fechaInicio > fechaFin && horaInicio > horaFin || fechaInicio > fechaFin || fechaInicio <= fechaFin && horaInicio >= horaFin) {
                 Swal.fire({
                     icon: 'error',

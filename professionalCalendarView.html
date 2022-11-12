@@ -19,6 +19,8 @@
     <script async src="https://cdn.ampproject.org/v0.js"></script>
     <script src="scripts/uptc.edu.co.model/jquery-3.6.0.js"></script>
     <script src="scripts/uptc.edu.co.model/Management.js"></script>
+    <script src="scripts/uptc.edu.co.model/ManagementCalendars.js"></script>
+
 </head>
 <body onload="nombreUsuario()">
 <header>
@@ -45,10 +47,8 @@
                                                 <a class="nav-link" href="professionalLoanRequestView.html">Solicitudes de Préstamo </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="professionalModificationRequest.html">Solicitudes de Modificación</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="professionalCancellationRequest.html">Solicitudes de Cancelacion</a>
+                                                <a class="nav-link" href="professionalRequests.html">Solicitudes
+                                                    de Modificación y Cancelación</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link active" style="color:black; background-color:#FFE602"  href="professionalCalendarView.html">Calendario Préstamos</a>
@@ -77,11 +77,12 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-7 justify-content-center">
-                                    <div class="table-responsive">
-                                        <div class="col-md-7 justify-content-lg-evenly">
+                                    <div class="table-responsive" >
+                                        <div class="col-md-7 ">
+
                                             <amp-date-picker layout="fixed-height" height="360" input-selector="#date"
                                                              id="prueba"></amp-date-picker>
-                                            &nbsp;
+                                            &nbsp
                                         </div>
                                     </div>
                                 </div>
@@ -89,7 +90,7 @@
                                 <div class="col-md-5 justify-content-center">
                                     <h6 class="text-md-center">Actividades</h6>
                                     <div class="table-responsive">
-                                        <table class="table table-bordered">
+                                        <table class="table table-bordered" id="tablaProgramacion">
                                             <thead>
                                             <tr class="text-center">
                                                 <th scope="col">Hora</th>
@@ -97,12 +98,15 @@
                                                 <th scope="col">Seccional</th>
                                             </tr>
                                             </thead>
+                                            <tbody id="tbody">
+
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-2 offset-md-4">
-                                        <button type="button" class="btn btn-warning">Visualizar fecha</button>
+                                        <button type="button" class="btn btn-warning" onclick="visualizarPrestamos()">Visualizar fecha</button>
                                     </div>
                                     <div class="col-md-3 offset-md-3">
                                         <a href="professionalCreateInstitutionalLoan.html">
@@ -131,5 +135,6 @@
         </div>
     </div>
 </footer>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
