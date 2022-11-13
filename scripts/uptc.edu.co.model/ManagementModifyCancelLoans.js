@@ -31,14 +31,16 @@ var verModificaciones = function (){
                 td4.innerText=valor[i][4];
                 tr.append(td4);
 
-                if (valor[i][5] == 0){
-                    var td5 = document.createElement("td");
-                    td5.innerHTML = "<button type='button' id='modificar' style='border-color: white' onclick='crearCookie("+valor[i][0]+"); modificar()'><img src=\"media/editar.png\" width='25px'></button></a>";
-                    tr.append(td5);
+                var td5 = document.createElement("td");
+                tr.append(td5);
 
-                    var td6 = document.createElement("td");
+                var td6 = document.createElement("td");
+                tr.append(td6);
+
+                if (valor[i][5] == 0){
+                    td5.innerHTML = "<button type='button' id='modificar' style='border-color: white' onclick='crearCookie("+valor[i][0]+"); modificar()'><img src=\"media/editar.png\" width='25px'></button></a>";
+
                     td6.innerText="";
-                    tr.append(td6);
                 }
                 tbody.append(tr);
             }
@@ -80,14 +82,16 @@ var verCancelaciones = function (){
                 td4.innerText=valor[i][4];
                 tr.append(td4);
 
-                if (valor[i][5] == 1){
-                    var td5 = document.createElement("td");
-                    td5.innerText="";
-                    tr.append(td5);
+                var td5 = document.createElement("td");
+                tr.append(td5);
 
-                    var td6 = document.createElement("td");
+                var td6 = document.createElement("td");
+                tr.append(td6);
+
+                if (valor[i][5] == 1){
+                    td5.innerText="";
+
                     td6.innerHTML = "<button type='button' id='cancelar' style='border-color: white' onclick='crearCookie("+valor[i][0]+"), cancelar()'><img src=\"media/aprobar.png\" width='35px'></button>";
-                    tr.append(td6);
                 }
                 tbody.append(tr);
             }

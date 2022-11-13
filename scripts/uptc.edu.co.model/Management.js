@@ -218,107 +218,117 @@ var capturarDatosSolicitud = function () {
     //alert(firma)
 
     if (idSolicitante != "" && seccional != "" && escenario != "" && descripcion != "" && fechaInicio != "" && fechaFin != "" && horaInicio != "" && horaFin != "" && firma != "") {
-        if (fechaActual()[0] <= fechaInicio.substring(0,4) && fechaActual()[1] <= fechaInicio.substring(5,7) && (fechaInicio.substring(8,10) - fechaActual()[2] >= 8) || (fechaInicio.substring(8,10) - fechaActual()[2] >= -8) ) {
-            if (fechaInicio > fechaFin && horaInicio > horaFin || fechaInicio > fechaFin || fechaInicio <= fechaFin && horaInicio >= horaFin) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Error en la fecha u hora seleccionada. Por favor verifique estos campos',
-                    footer: '<a></a>'
-                })
-            } else if ((parseInt(horaFin.substring(0, 2), 10) - parseInt(horaInicio.substring(0, 2), 10)) === 0) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Error en las horas seleccionadas, recuerde que el prestamo de escenarios se realiza por mínimo 1 hora',
-                    footer: '<a></a>'
-                })
+        if (fechaActual()[0] <= fechaInicio.substring(0,4) && fechaActual()[1] <= fechaInicio.substring(5,7) ) {
+            if ((fechaInicio.substring(8,10) - fechaActual()[2] >= 8) || (fechaInicio.substring(8,10) - fechaActual()[2] <= -8) ){
+                if (fechaInicio > fechaFin && horaInicio > horaFin || fechaInicio > fechaFin || fechaInicio <= fechaFin && horaInicio >= horaFin) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Error en la fecha u hora seleccionada. Por favor verifique estos campos',
+                        footer: '<a></a>'
+                    })
+                } else if ((parseInt(horaFin.substring(0, 2), 10) - parseInt(horaInicio.substring(0, 2), 10)) === 0) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Error en las horas seleccionadas, recuerde que el prestamo de escenarios se realiza por mínimo 1 hora',
+                        footer: '<a></a>'
+                    })
 
-            } else if ((parseInt(horaFin.substring(0, 2), 10) - parseInt(horaInicio.substring(0, 2), 10)) === 1 && (parseInt(horaFin.substring(3, 6), 10) - parseInt(horaInicio.substring(3, 6), 10)) < 0) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Error en las horas seleccionadas, recuerde que el prestamo de escenarios se realiza por mínimo 1 hora',
-                    footer: '<a></a>'
-                })
-            } else if ((parseInt(horaInicio.substring(0, 2), 10)) < 8 || (parseInt(horaFin.substring(0, 2), 10) >= 22 && (parseInt(horaFin.substring(3, 6), 10) > 0))) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Error en las horas seleccionadas, la hora de inicio u hora de fin estan fuera del horario asignado para el prestamo de escenarios deportivos',
-                    footer: '<a></a>'
-                })
+                } else if ((parseInt(horaFin.substring(0, 2), 10) - parseInt(horaInicio.substring(0, 2), 10)) === 1 && (parseInt(horaFin.substring(3, 6), 10) - parseInt(horaInicio.substring(3, 6), 10)) < 0) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Error en las horas seleccionadas, recuerde que el prestamo de escenarios se realiza por mínimo 1 hora',
+                        footer: '<a></a>'
+                    })
+                } else if ((parseInt(horaInicio.substring(0, 2), 10)) < 8 || (parseInt(horaFin.substring(0, 2), 10) >= 22 && (parseInt(horaFin.substring(3, 6), 10) > 0))) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Error en las horas seleccionadas, la hora de inicio u hora de fin estan fuera del horario asignado para el prestamo de escenarios deportivos',
+                        footer: '<a></a>'
+                    })
 
-            } else if (escenario.includes("diurno") === true && (parseInt(horaFin.substring(0, 2), 10) >= 18 && (parseInt(horaFin.substring(3, 6), 10) > 0))) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'La hora final del préstamo no corresponde a los horarios establecidos para el escenario seleccionado. Por favor verifique la hora final del préstamo',
-                    footer: '<a></a>'
-                })
+                } else if (escenario.includes("diurno") === true && (parseInt(horaFin.substring(0, 2), 10) >= 18 && (parseInt(horaFin.substring(3, 6), 10) > 0))) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'La hora final del préstamo no corresponde a los horarios establecidos para el escenario seleccionado. Por favor verifique la hora final del préstamo',
+                        footer: '<a></a>'
+                    })
 
-            } else if (escenario.includes("nocturno") === true && (parseInt(horaFin.substring(0, 2), 10) >= 22 && (parseInt(horaFin.substring(3, 6), 10) > 0))
-                || escenario.includes("nocturno") === true && (parseInt(horaInicio.substring(0, 2), 10) < 18)) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Las horas del préstamo no corresponde a los horarios establecidos para el escenario seleccionado. Por favor verifique las horas del préstamo',
-                    footer: '<a></a>'
-                })
-            } else {
-                $.ajax({
-                    async: false,
-                    type: 'POST',
-                    data: {
-                        idSolicitante: idSolicitante,
-                        seccional: seccional,
-                        escenario: escenario,
-                        descripcion: descripcion,
-                        fechaInicio: fechaInicio,
-                        horaInicio: horaInicio,
-                        fechaFin: fechaFin,
-                        horaFin: horaFin,
-                    },
-                    url: 'scripts/uptc.edu.co.model/PHP/createLoanRequest.php',
-                    success: function (response) {
-                        if (response == 1) {
-                            $.ajax({
-                                type: 'POST',
-                                data: form_data,
-                                contentType: false,
-                                processData: false,
-                                url: 'scripts/uptc.edu.co.model/PHP/firma.php',
-                                success: function (response) {
-                                    if (response == 1) {
-                                        Swal.fire(
-                                            'Solicitud creada',
-                                            'Ahora debe subir los documentos de soporte',
-                                            'success'
-                                        ).then(function (){
-                                            window.location.href = "applicantLoanRequestFiles.html"
-                                        })
+                } else if (escenario.includes("nocturno") === true && (parseInt(horaFin.substring(0, 2), 10) >= 22 && (parseInt(horaFin.substring(3, 6), 10) > 0))
+                    || escenario.includes("nocturno") === true && (parseInt(horaInicio.substring(0, 2), 10) < 18)) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Las horas del préstamo no corresponde a los horarios establecidos para el escenario seleccionado. Por favor verifique las horas del préstamo',
+                        footer: '<a></a>'
+                    })
+                } else {
+                    $.ajax({
+                        async: false,
+                        type: 'POST',
+                        data: {
+                            idSolicitante: idSolicitante,
+                            seccional: seccional,
+                            escenario: escenario,
+                            descripcion: descripcion,
+                            fechaInicio: fechaInicio,
+                            horaInicio: horaInicio,
+                            fechaFin: fechaFin,
+                            horaFin: horaFin,
+                        },
+                        url: 'scripts/uptc.edu.co.model/PHP/createLoanRequest.php',
+                        success: function (response) {
+                            if (response == 1) {
+                                $.ajax({
+                                    type: 'POST',
+                                    data: form_data,
+                                    contentType: false,
+                                    processData: false,
+                                    url: 'scripts/uptc.edu.co.model/PHP/firma.php',
+                                    success: function (response) {
+                                        if (response == 1) {
+                                            Swal.fire(
+                                                'Solicitud creada',
+                                                'Ahora debe subir los documentos de soporte',
+                                                'success'
+                                            ).then(function (){
+                                                window.location.href = "applicantLoanRequestFiles.html"
+                                            })
 
-                                    } else if (response == 2) {
-                                        Swal.fire({
-                                            icon: 'error',
-                                            title: 'Oops...',
-                                            text: 'Error al cargar el archivo, revise la subida',
-                                            footer: '<a></a>'
-                                        })
+                                        } else if (response == 2) {
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Oops...',
+                                                text: 'Error al cargar el archivo, revise la subida',
+                                                footer: '<a></a>'
+                                            })
+                                        }
                                     }
-                                }
-                            });
-                        } else {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Error al cargar la solicitud',
-                                footer: '<a></a>'
-                            })
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Error al cargar la solicitud',
+                                    footer: '<a></a>'
+                                })
 
+                            }
                         }
-                    }
-                });
+                    });
+                }
+            }  else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'La fecha inicial seleccionada no cumple con los requesitos minimos para generar la soliciitud de préstamo de escenarios deportivos',
+                    footer: '<a></a>'
+                })
+                return false;
             }
         } else {
             Swal.fire({
