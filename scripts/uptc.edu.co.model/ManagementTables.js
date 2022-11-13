@@ -67,26 +67,45 @@ var subirDocumentos = function () {
         success: function (response) {
             response = JSON.parse(response)
             var form_data = new FormData();
+            var count=0;
+            var docsFaltantes="Faltan los siguientes documentos: "
             for (let i = 0; i < response.length; i++) {
 
                 var doc = document.getElementById(response[i] + "doc").files[0]
                 if (doc != null) {
                     form_data.append(""+response[i], doc)
                 } else {
-                    alert("Falta el siguiente documento: " + response[i])
+                    count+=1;
+                    docsFaltantes+=response[i]+", "
                 }
             }
 
-            $.ajax({
-                type: 'POST',
-                url: 'scripts/uptc.edu.co.model/PHP/subirDocumentos.php',
-                data: form_data,
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    window.location.href="applicantMainView.html"
-                }
-            });
+            if (count==0){
+                $.ajax({
+                    type: 'POST',
+                    url: 'scripts/uptc.edu.co.model/PHP/subirDocumentos.php',
+                    data: form_data,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        Swal.fire(
+                            'Excelente',
+                            'Documentos subidos, ahora debe esperar la aprobación de su solicitud de préstamo, esta se le notificará al correo',
+                            'success'
+                        ).then(function (){
+                            window.location.href="applicantMainView.html"
+                        })
+
+                    }
+                });
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: docsFaltantes.substring(0, docsFaltantes.length-2),
+                    footer: '<a></a>'
+                })
+            }
         }
     });
 

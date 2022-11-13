@@ -1,7 +1,7 @@
 <?php
 require('connection.php');
 
-$query = 'SELECT codigoSolicitud, documento, fechaInicio, fechaFin, idEscenario, horaInicio, horaFin FROM solicitud_prestamo WHERE estado="En revisión"';
+$query = "SELECT codigoSolicitud, documento, fechaInicio, fechaFin, idEscenario, horaInicio, horaFin FROM solicitud_prestamo WHERE estado='En revisión'";
 $result = $conn->query($query);
 $data = [];
 $final =[];

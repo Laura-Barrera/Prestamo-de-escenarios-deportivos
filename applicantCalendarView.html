@@ -23,6 +23,7 @@
     <script async src="https://cdn.ampproject.org/v0.js"></script>
     <script src="scripts/uptc.edu.co.model/jquery-3.6.0.js"></script>
     <script src="scripts/uptc.edu.co.model/Management.js"></script>
+    <script src="scripts/uptc.edu.co.model/ManagementCalendars.js"></script>
 </head>
 <body onload="nombreUsuario()">
 <header>
@@ -102,12 +103,15 @@
                                                 <th scope="col">Seccional</th>
                                             </tr>
                                             </thead>
+                                            <tbody id="tbody">
+
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-2 offset-md-4">
-                                        <button type="button" class="btn btn-warning">Visualizar fecha</button>
+                                        <button type="button" class="btn btn-warning" onclick="visualizarPrestamos()">Visualizar fecha</button>
                                     </div>
                                     <div class="col-md-3 offset-md-3">
                                         <a href="applicantLoanRequest.html">

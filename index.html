@@ -33,34 +33,38 @@
                                 <div class="row text-center">
                                     <p style="font-size: medium">Por favor ingrese su usuario y contraseña</p>
                                 </div>
-                                <div class="row">
-                                    <div class="col-5">
-                                        <p style="font-size: medium">Usuario:</p>
+                                <form name="iniciarSesion" action="">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <p style="font-size: medium">Usuario:</p>
+                                        </div>
+                                        <div class="col-7">
+                                            <input type="text" placeholder="Usuario" class="form-control"
+                                                   name="LOGusuario"
+                                                   id="LOGusuario" required><br>
+                                        </div>
                                     </div>
-                                    <div class="col-7">
-                                        <input type="text" placeholder="Usuario" class="form-control" name="LOGusuario"
-                                               id="LOGusuario"><br>
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <p style="font-size: medium">Contraseña:</p>
+                                        </div>
+                                        <div class="col-7">
+                                            <input type="password" placeholder="Password" class="form-control"
+                                                   name="LOGcontrasena" id="LOGcontrasena" required>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5">
-                                        <p style="font-size: medium">Contraseña:</p>
+                                    <div class="row align-items-center">
+                                        <div class="col-5">
+                                            <br><a href="registerUser.html"><p>Registrarse</p></a>
+                                        </div>
+                                        <div class="col-7 text-end">
+                                            <button type="submit" class="btn btn-warning" id="iniciarSesion" onclick="return getInicioSesion()">
+                                                Enviar
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div class="col-7">
-                                        <input type="password" placeholder="Password" class="form-control"
-                                               name="contrasena" id="LOGcontrasena">
-                                    </div>
-                                </div>
-                                <div class="row align-items-center">
-                                    <div class="col-5">
-                                        <br><a href="registerUser.html"><p>Registrarse</p></a>
-                                    </div>
-                                    <div class="col-7 text-end">
-                                        <button type="button" class="btn btn-warning" onclick="getInicioSesion()">
-                                            Enviar
-                                        </button>
-                                    </div>
-                                </div>
+                                </form>
+
                                 <div class="row text-end">
                                     <a href="forgotPassword.html"><p>¿Olvido su contraseña?</p></a>
                                 </div>
@@ -86,6 +90,7 @@
         </div>
     </div>
 </footer>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="scripts/uptc.edu.co.model/jquery-3.6.0.js"></script>
 <script nomodule defer src="node_modules/js-cookie/dist/js.cookie.mjs"></script>
 <script src="scripts/uptc.edu.co.model/User.js"></script>
