@@ -122,9 +122,11 @@ var datosFormulario = function () {
 }
 
 
+
 var fechaActual = function () {
     var hoy = new Date();
     var fechaActual = [hoy.getFullYear(), hoy.getMonth() + 1, hoy.getDate()]
+
     return fechaActual;
 }
 
