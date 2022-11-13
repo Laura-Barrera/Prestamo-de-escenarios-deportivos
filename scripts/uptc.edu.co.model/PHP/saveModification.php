@@ -25,5 +25,3 @@ $updateSolicitud = "update solicitud_prestamo set fechaInicio='$fechaInicio', ho
 $conn->query($updateSolicitud);
 
 echo 1;
-
-

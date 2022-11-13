@@ -1,6 +1,6 @@
 <?php
 require("connection.php");
-$select = "select numCancelacion, fechaPeticion, estado, cancelacion.descripcion, codigoPrestamo from cancelacion, solicitud_prestamo where estadoCancelacion='Pendiente' and codigoPrestamo = codigoSolicitud and solicitud_prestamo.estado != 'Cancelado'";
+$select = "select numCancelacion, fechaPeticion, estado, cancelacion.descripcion, codigoPrestamo from cancelacion, solicitud_prestamo where estadoCancelacion='Pendiente' and codigoPrestamo = codigoSolicitud and solicitud_prestamo.estado != 'Cancelado' and solicitud_prestamo.estado != 'No Autorizado'";
 $result = $conn->query($select);
 
 $data=[];

@@ -63,7 +63,7 @@ var solicitudes = function (){
                 td8.innerText=valor[i][8];
                 tr.append(td8);
 
-                if(valor[i][7] != "No autorizado" & valor[i][7] != "Cancelado" & valor[i][1] >= fechaActual()){
+                if(valor[i][7] != "No autorizado" & valor[i][7] != "Cancelado" & fechaActual()[0] <= valor[i][1].substring(0,4) && fechaActual()[1] <= valor[i][1].substring(5,7) && (valor[i][1].substring(8,10) - fechaActual()[2] >= 8) || (fechaInicio.substring(8,10) - fechaActual()[2] >= -8) ){
                     var td9 = document.createElement("td");
                     td9.innerHTML = "<a href='applicantModifyLoan.html'><button type='button' id='modificar' style='border-color: white' onclick='createCookie("+valor[i][0]+")'><img src=\"media/editar.png\" width='25px'></button></a>";
                     tr.append(td9);
@@ -111,7 +111,7 @@ var deleteCookie = function (){
 
 var fechaActual = function () {
     var hoy = new Date();
-    var fechaActual = hoy.getFullYear() + '-' + ( hoy.getMonth() + 1 ) + '-' + hoy.getDate();
+    var fechaActual = [hoy.getFullYear(), hoy.getMonth() + 1, hoy.getDate()]
     return fechaActual;
 }
 
