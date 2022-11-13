@@ -2,7 +2,7 @@
 $fecha=$_POST['fecha'];
 require('connection.php');
 
-$query="select horaInicio, horaFin, escenario.nombre as nombre, seccional from solicitud_prestamo as solicitud inner join escenario_deportivo as escenario on escenario.idEscenario=solicitud.idEscenario where fechaInicio='$fecha'";
+$query="select horaInicio, horaFin, escenario.nombre as nombre, seccional from solicitud_prestamo as solicitud inner join escenario_deportivo as escenario on escenario.idEscenario=solicitud.idEscenario where fechaInicio='$fecha' and solicitud.estado='Aprobado'";
 $result=$conn->query($query);
 $data = [];
 $final =[];

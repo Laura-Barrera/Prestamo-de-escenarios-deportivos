@@ -129,34 +129,71 @@ var saveModification = function (){
     var fechaPeticion = fechaActual()[0]+'-'+fechaActual()[1]+'-'+fechaActual()[2];
     var estadoModificacion = "Pendiente";
 
-    if (descripcion != ""){
-        $.ajax({
-            async: false,
-            type: 'POST',
-            url: 'scripts/uptc.edu.co.model/PHP/createModification.php',
-            data: {
-                numModificación: 0,
-                descripcion: descripcion,
-                fechaPeticion: fechaPeticion,
-                estadoModificacion: estadoModificacion,
-                codigoPrestamo: codigoPrestamo,
-            },
-            success: function (response) {
-                if (response == 1) {
-                    alert("Solicitud de modificacion creada con exito")
-                    window.location.href = "applicantActiveLoans.html"
-                } else if (response == 2){
-                    alert("La modificacion no se puede almacenar porque ya existe una solicitud de modificacion para la misma solicitud o préstamo");
-                } else {
-                    alert("Error, no se ha podido guardar con exito la solicitud de modificación")
-                    window.location.href="applicantActiveLoans.html"
-                }
-            }
+    Swal.fire({
+        title: '¿Está seguro de crear esta modificación?',
+        text: "",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, crear'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            if (descripcion != ""){
+                $.ajax({
+                    async: false,
+                    type: 'POST',
+                    url: 'scripts/uptc.edu.co.model/PHP/createModification.php',
+                    data: {
+                        numModificación: 0,
+                        descripcion: descripcion,
+                        fechaPeticion: fechaPeticion,
+                        estadoModificacion: estadoModificacion,
+                        codigoPrestamo: codigoPrestamo,
+                    },
+                    success: function (response) {
+                        if (response == 1) {
+                            Swal.fire(
+                                'Correcto',
+                                'Solicitud de modificacion creada con exito',
+                                'success'
+                            ).then(function (){
+                                window.location.href = "applicantActiveLoans.html"
+                            })
 
-        });
-    } else {
-        alert("Hay campos vacíos en el formulario")
-    }
+                        } else if (response == 2){
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'La modificacion no se puede almacenar porque ya existe una solicitud de modificacion para la misma solicitud o préstamo',
+                                footer: '<a></a>'
+                            })
+
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Error, no se ha podido guardar con exito la solicitud de modificación',
+                                footer: '<a></a>'
+                            }).then(function (){
+                                window.location.href="applicantActiveLoans.html"
+                            })
+
+                        }
+                    }
+
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Hay campos vacios en el formulario',
+                    footer: '<a></a>'
+                })
+            }
+        }
+    })
+
 }
 
 var saveCancelation = function (){
@@ -174,27 +211,55 @@ var saveCancelation = function (){
     var descripcion = "Solicitud Cancelacion";
     var fechaPeticion = fechaActual()[0]+'-'+fechaActual()[1]+'-'+fechaActual()[2];
     var estadoCancelacion = "Pendiente";
+    Swal.fire({
+        title: '¿esta seguro de que quiere guardar esta cancelación',
+        text: "",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, guardar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                async: false,
+                type: 'POST',
+                url: 'scripts/uptc.edu.co.model/PHP/createCancelation.php',
+                data: {
+                    numCancelacion: 0,
+                    descripcion: descripcion,
+                    fechaPeticion: fechaPeticion,
+                    estadoCancelacion: estadoCancelacion,
+                    codigoPrestamo: codigoPrestamo,
+                },
+                success: function (response) {
+                    if (response == 1) {
+                        Swal.fire(
+                            'Correcto',
+                            'Solicitud de cancelacion creada con exito',
+                            'success'
+                        )
+                    } else if (response == 2){
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'La cancelacion no se puede almacenar porque ya existe una solicitud de cancelacion para la misma solicitud o préstamo',
+                            footer: '<a></a>'
+                        })
 
-    $.ajax({
-        async: false,
-        type: 'POST',
-        url: 'scripts/uptc.edu.co.model/PHP/createCancelation.php',
-        data: {
-            numCancelacion: 0,
-            descripcion: descripcion,
-            fechaPeticion: fechaPeticion,
-            estadoCancelacion: estadoCancelacion,
-            codigoPrestamo: codigoPrestamo,
-        },
-        success: function (response) {
-            if (response == 1) {
-                alert("Solicitud de cancelacion creada con exito")
-            } else if (response == 2){
-                alert("La cancelacion no se puede almacenar porque ya existe una solicitud de cancelacion para la misma solicitud o préstamo")
-            } else {
-                alert("Error, no se ha podido guardar con exito la solicitud de cancelación")
-            }
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Error, no se ha podido guardar con exito la solicitud de cancelación',
+                            footer: '<a></a>'
+                        })
+
+                    }
+                }
+
+            });
         }
+    })
 
-    });
 }

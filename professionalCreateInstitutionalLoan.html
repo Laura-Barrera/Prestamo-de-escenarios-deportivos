@@ -76,65 +76,67 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="container">
-                                            <div class="row">
-                                                <div class="col-5">
-                                                    <p style="font-size: medium">Fecha Inicio Evento:</p>
+                                            <form>
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                        <p style="font-size: medium">Fecha Inicio Evento:</p>
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <input type="datetime-local" placeholder="Fecha Inicio"
+                                                               class="form-control" id="PIfechainicio" required><br>
+                                                    </div>
                                                 </div>
-                                                <div class="col-7">
-                                                    <input type="datetime-local" placeholder="Fecha Inicio"
-                                                           class="form-control" id="PIfechainicio" required><br>
-                                                </div>
-                                            </div>
 
-                                            <div class="row">
-                                                <div class="col-5">
-                                                    <p style="font-size: medium">Fecha Fin Evento:</p>
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                        <p style="font-size: medium">Fecha Fin Evento:</p>
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <input type="datetime-local" placeholder="Fecha Fin"
+                                                               class="form-control" id="PIfechafin" required><br>
+                                                    </div>
                                                 </div>
-                                                <div class="col-7">
-                                                    <input type="datetime-local" placeholder="Fecha Fin"
-                                                           class="form-control" id="PIfechafin" required><br>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-5">
-                                                    <p style="font-size: medium">Descripción:</p>
-                                                </div>
-                                                <div class="col-7">
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                        <p style="font-size: medium">Descripción:</p>
+                                                    </div>
+                                                    <div class="col-7">
                                                         <textarea class="form-control"
                                                                   rows="4" id="PIdescripcion" required></textarea><br>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-5">
-                                                    <p style="font-size: medium">Seccional</p>
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                        <p style="font-size: medium">Seccional</p>
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <select class="form-select" aria-label="seccional" id="PIseccional" onchange="cargarEscenarios()" required>
+                                                            <option selected>Seleccione...</option>
+                                                            <option value="Tunja">Tunja</option>
+                                                            <option value="Sogamoso">Sogamoso</option>
+                                                            <option value="Duitama">Duitama</option>
+                                                            <option value="Chiquinquira">Chiquinquira</option>
+                                                        </select><br>
+                                                    </div>
                                                 </div>
-                                                <div class="col-7">
-                                                    <select class="form-select" aria-label="seccional" id="PIseccional" onchange="cargarEscenarios()" required>
-                                                        <option selected>Seleccione...</option>
-                                                        <option value="Tunja">Tunja</option>
-                                                        <option value="Sogamoso">Sogamoso</option>
-                                                        <option value="Duitama">Duitama</option>
-                                                        <option value="Chiquinquira">Chiquinquira</option>
-                                                    </select><br>
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                        <p style="font-size: medium">Escenario deportivo</p>
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <select class="form-select" aria-label="tipo usuario" id="PIescenario" required>
+                                                            <option selected>Seleccione...</option>
+                                                        </select><br>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-5">
-                                                    <p style="font-size: medium">Escenario deportivo</p>
-                                                </div>
-                                                <div class="col-7">
-                                                    <select class="form-select" aria-label="tipo usuario" id="PIescenario" required>
-                                                        <option selected>Seleccione...</option>
-                                                    </select><br>
-                                                </div>
-                                            </div>
 
-                                            <div class="row align-items-center">
-                                                <div class="col-12 text-end">
-                                                    <br>
-                                                    <button type="button" class="btn btn-warning" onclick="capDatosPI()">Crear</button>
+                                                <div class="row align-items-center">
+                                                    <div class="col-12 text-end">
+                                                        <br>
+                                                        <button type="submit" class="btn btn-warning" onclick="return capDatosPI()">Crear</button>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
