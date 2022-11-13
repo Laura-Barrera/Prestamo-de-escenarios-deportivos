@@ -322,27 +322,42 @@ var guardarModificacion = function (){
     var horaInicio = document.getElementById("GenSolFechaIni").value.substring(11, 17);
     var horaFin = document.getElementById("GenSolFechaFin").value.substring(11, 17);
 
-    $.ajax({
-        async: true,
-        type: 'POST',
-        data: {
-            numModificación: numModificación,
-            seccional: seccional,
-            escenario: escenario,
-            fechaInicio: fechaInicio,
-            horaInicio: horaInicio,
-            fechaFin: fechaFin,
-            horaFin: horaFin,
-        },
-        url: 'scripts/uptc.edu.co.model/PHP/saveModification.php',
-        success: function (response) {
-            Swal.fire(
-                'Realizado',
-                'Solicitud de cancelación actualizada con exito',
-                'success'
-            ).then(function (){
-                window.location.href="professionalRequests.html"
-            })
+    Swal.fire({
+        title: '¿Está seguro de que quiere modificar esta solicitud?',
+        text: "",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si, modificar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                async: true,
+                type: 'POST',
+                data: {
+                    numModificación: numModificación,
+                    seccional: seccional,
+                    escenario: escenario,
+                    fechaInicio: fechaInicio,
+                    horaInicio: horaInicio,
+                    fechaFin: fechaFin,
+                    horaFin: horaFin,
+                },
+                url: 'scripts/uptc.edu.co.model/PHP/saveModification.php',
+                success: function (response) {
+                    Swal.fire(
+                        'Realizado',
+                        'Solicitud actualizada con exito',
+                        'success'
+                    ).then(function (){
+                        window.location.href="professionalRequests.html"
+                    })
+                }
+            });
         }
-    });
+    })
+
+
+
 }
