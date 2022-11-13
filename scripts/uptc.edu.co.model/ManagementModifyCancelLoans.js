@@ -33,7 +33,7 @@ var verModificaciones = function (){
 
                 if (valor[i][5] == 0){
                     var td5 = document.createElement("td");
-                    td5.innerHTML = "<button type='button' id='modificar' style='border-color: white' onclick='crearCookie("+valor[i][0]+"), modificar()'><img src=\"media/editar.png\" width='25px'></button></a>";
+                    td5.innerHTML = "<button type='button' id='modificar' style='border-color: white' onclick='crearCookie("+valor[i][0]+"); modificar()'><img src=\"media/editar.png\" width='25px'></button></a>";
                     tr.append(td5);
 
                     var td6 = document.createElement("td");
@@ -122,7 +122,27 @@ var cancelar = function (){
         },
         url: 'scripts/uptc.edu.co.model/PHP/approveCancel.php',
         success: function (response) {
-            window.location.href = "professionalRequests.html"
+            Swal.fire({
+                title: '¿Está seguro de que quiere cancelar esta solicitud?',
+                text: "no podrá revertir los cambios",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'si, cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Realizado',
+                        'Cancelación realizada',
+                        'success'
+                    ).then(function (){
+                        window.location.href = "professionalRequests.html"
+                    })
+                }
+            })
+
+
         }
 
     });
@@ -280,7 +300,7 @@ var pagina = function (numModificación, valor) {
         "   </div>" +
         "   <div class=\"row align-items-center\">\n" +
         "       <div class=\"col-12 text-end\">\n" +"<br>\n" +
-        "           <a href=\"professionalRequests.html\"><button type=\"button\"\n" + "class=\"btn btn-warning\" onclick=\"guardarModificacion()\">Guardar" + "</button></a>\n" +
+        "           <button type=\"button\"\n" + "class=\"btn btn-warning\" onclick=\"guardarModificacion()\">Guardar" + "</button>\n" +
         "           <a href=\"professionalRequests.html\"><button type=\"button\"\n"+ "class=\"btn btn-warning\">Cancelar</button></a>" +
         "       </div>\n" +
         "   </div>" +
@@ -316,8 +336,13 @@ var guardarModificacion = function (){
         },
         url: 'scripts/uptc.edu.co.model/PHP/saveModification.php',
         success: function (response) {
-            valor = JSON.parse(response)
-            console.log(valor)
+            Swal.fire(
+                'Realizado',
+                'Solicitud de cancelación actualizada con exito',
+                'success'
+            ).then(function (){
+                window.location.href="professionalRequests.html"
+            })
         }
     });
 }

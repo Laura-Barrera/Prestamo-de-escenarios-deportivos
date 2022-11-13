@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
 $user = "root";
-$pass = "root";
+$pass = "";
 $db = "prestamo_escenarios";
 $conn = new mysqli($host, $user, $pass, $db);
 if ($conn->connect_errno) {

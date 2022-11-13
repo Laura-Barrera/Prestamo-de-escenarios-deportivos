@@ -1,10 +1,11 @@
+
 var getInicioSesion = function () {
 
     var LOGusuario = document.getElementById("LOGusuario").value
     var LOGcontrasena = document.getElementById("LOGcontrasena").value
     var datos = []
     if (LOGusuario == "" || LOGcontrasena == "") {
-        alert("usuario o contraseña vacíos")
+        return true;
     } else {
         $.ajax({
             async: false,
@@ -18,22 +19,38 @@ var getInicioSesion = function () {
                 datos = JSON.parse(response)
                 if (!(response == 1)) {
                     document.cookie = 'userId=' + datos[3] + ';path=/';
-                    document.cookie='userIdTest=' + 'holaMundo' + ';path=/'
-                    if (datos[2] == "NULL") {
+                    document.cookie = 'userIdTest=' + 'holaMundo' + ';path=/'
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Bienvenido!',
+                        showConfirmButton: false,
+                        timer: 2000
+                    }).then(function (){
+                        if (datos[2] == "NULL") {
 
-                        window.location.href = "applicantMainView.html";
+                            window.location.href = "applicantMainView.html";
 
 
-                    } else {
-                        window.location.href = "professionalMainView.html";
-                    }
+
+                        } else {
+                            window.location.href = "professionalMainView.html";
+
+                        }
+                    })
+
                 } else {
-                    alert("Usuario o contraseña incorrectos")
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Usuario o contraseña incorrectos',
+                        footer: '<a href="forgotPassword.html">¿Olvidó su contraseña?</a>'
+                    })
                 }
             }
         });
     }
-
+    return false;
 }
 var crearSolicitante = function () {
     var numeroDocumento = document.getElementById("REGdocumento").value
@@ -49,7 +66,7 @@ var crearSolicitante = function () {
 
         var solicitante = new Applicant(numeroDocumento, nombre, apellido, direccion, telefono, correo, usuario, contrasena, tipoPersona);
         var response = solicitante.addSolicitante();
-
+        return false;
         /*if (response == 1) {
             alert("Usuario creado exitosamente");
             window.location.replace("../index.html");
@@ -57,18 +74,19 @@ var crearSolicitante = function () {
             alert("Error al crear el usuario")
         }*/
     } else {
-        alert("Alguno de los campos está vacío o no fue seleccionado");
+        //alert("Alguno de los campos está vacío o no fue seleccionado");
+        return true;
     }
 
 }
 
-var getCookie= function (){
+var getCookie = function () {
     var cookies = document.cookie.split(';')
     for (let i = 0; i < cookies.length; i++) {
 
-        if(i==0 && cookies[i].substring(0, 7)=="userId="){
+        if (i == 0 && cookies[i].substring(0, 7) == "userId=") {
             return cookies[i].substring(7, cookies[i].length)
-        } else if ( cookies[i].substring(0, 8)==" userId="){
+        } else if (cookies[i].substring(0, 8) == " userId=") {
             return cookies[i].substring(8, cookies[i].length)
         }
     }
@@ -103,32 +121,35 @@ var datosFormulario = function () {
 
 }
 
+
+
 var fechaActual = function () {
     var hoy = new Date();
-    var fechaActual = hoy.getFullYear() + '-' + ( hoy.getMonth() + 1 ) + '-' + hoy.getDate();
+    var fechaActual = [hoy.getFullYear(), hoy.getMonth() + 1, hoy.getDate()]
+
     return fechaActual;
 }
 
-var comprobarDias = function (fechaInicio, fechaFin){
+var comprobarDias = function (fechaInicio, fechaFin) {
     var aux = false;
-    if(fechaInicio.substring(5,7) === fechaActual().substring(5,7)){
-        if((fechaInicio.substring(8,fechaInicio.length) - fechaActual().substring(8,fechaActual().length)) >= 8){
+    if (fechaInicio.substring(5, 7) === fechaActual().substring(5, 7)) {
+        if ((fechaInicio.substring(8, fechaInicio.length) - fechaActual().substring(8, fechaActual().length)) >= 8) {
             aux = true;
         }
-    } else if ((fechaInicio.substring(5,7) - fechaActual().substring(5,7)) === 1){
-        if ((fechaInicio.substring(8,fechaInicio.length) - fechaActual().substring(8,fechaActual().length)) <= 23){
+    } else if ((fechaInicio.substring(5, 7) - fechaActual().substring(5, 7)) === 1) {
+        if ((fechaInicio.substring(8, fechaInicio.length) - fechaActual().substring(8, fechaActual().length)) <= 23) {
             aux = true;
         }
-    } else if ((fechaInicio.substring(5,7) - fechaActual().substring(5,7)) > 1){
+    } else if ((fechaInicio.substring(5, 7) - fechaActual().substring(5, 7)) > 1) {
         aux = true;
-    } else{
+    } else {
         aux = false;
     }
     return aux;
 }
 
 var nombreUsuario = function () {
-    var cookie= getCookie()
+    var cookie = getCookie()
     $.ajax({
         type: 'POST',
         data: {
@@ -170,10 +191,9 @@ var cargarEscenarios = function () {
 }
 
 var capturarDatosSolicitud = function () {
-    var cookies=document.cookie.split(";")
+    var cookies = document.cookie.split(";")
 
     var idSolicitante = getCookie()
-    console.log(idSolicitante)
     //alert(idSolicitante)
     var seccional = document.getElementById("seccional").value;
     //alert(seccional);
@@ -197,21 +217,54 @@ var capturarDatosSolicitud = function () {
 
     //alert(firma)
 
-    if(idSolicitante != "" && seccional != "" && escenario != "" && descripcion != "" && fechaInicio != "" && fechaFin != "" && horaInicio != "" && horaFin != "" && firma != "") {
-        if (fechaActual() < fechaInicio && comprobarDias(fechaInicio, fechaFin) === true) {
-            if(fechaInicio > fechaFin && horaInicio > horaFin || fechaInicio > fechaFin || fechaInicio <= fechaFin && horaInicio >= horaFin) {
-                alert("Error en la fecha u hora seleccionada. Por favor verifique estos campos");
-            } else if ((parseInt(horaFin.substring(0,2),10) - parseInt(horaInicio.substring(0,2),10)) === 0){
-                alert("Error en las horas seleccionadas, recuerde que el prestamo de escenarios se realiza por mínimo 1 hora");
-            } else if ((parseInt(horaFin.substring(0,2),10) - parseInt(horaInicio.substring(0,2),10)) === 1 && (parseInt(horaFin.substring(3,6),10) - parseInt(horaInicio.substring(3,6),10)) < 0){
-                alert("Error en las horas seleccionadas, recuerde que el prestamo de escenarios se realiza por mínimo 1 hora");
-            } else if ((parseInt(horaInicio.substring(0,2),10)) < 8 || (parseInt(horaFin.substring(0,2),10) >= 22 && (parseInt(horaFin.substring(3,6),10) > 0))) {
-                alert("Error en las horas seleccionadas, la hora de inicio u hora de fin estan fuera del horario asignado para el prestamo de escenarios deportivos");
-            } else if (escenario.includes("diurno") === true && (parseInt(horaFin.substring(0,2),10) >= 18 && (parseInt(horaFin.substring(3,6),10) > 0))){
-                alert("La hora final del préstamo no corresponde a los horarios establecidos para el escenario seleccionado. Por favor verifique la hora final del préstamo")
-            } else if (escenario.includes("nocturno") === true && (parseInt(horaFin.substring(0,2),10) >= 22 && (parseInt(horaFin.substring(3,6),10) > 0))
-                || escenario.includes("nocturno") === true && (parseInt(horaInicio.substring(0,2),10) < 18)){
-                alert("Las horas del préstamo no corresponde a los horarios establecidos para el escenario seleccionado. Por favor verifique las horas del préstamo")
+    if (idSolicitante != "" && seccional != "" && escenario != "" && descripcion != "" && fechaInicio != "" && fechaFin != "" && horaInicio != "" && horaFin != "" && firma != "") {
+        if (fechaActual()[0] <= fechaInicio.substring(0,4) && fechaActual()[1] <= fechaInicio.substring(5,7) && (fechaInicio.substring(8,10) - fechaActual()[2] >= 8) || (fechaInicio.substring(8,10) - fechaActual()[2] >= -8) ) {
+            if (fechaInicio > fechaFin && horaInicio > horaFin || fechaInicio > fechaFin || fechaInicio <= fechaFin && horaInicio >= horaFin) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Error en la fecha u hora seleccionada. Por favor verifique estos campos',
+                    footer: '<a></a>'
+                })
+            } else if ((parseInt(horaFin.substring(0, 2), 10) - parseInt(horaInicio.substring(0, 2), 10)) === 0) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Error en las horas seleccionadas, recuerde que el prestamo de escenarios se realiza por mínimo 1 hora',
+                    footer: '<a></a>'
+                })
+
+            } else if ((parseInt(horaFin.substring(0, 2), 10) - parseInt(horaInicio.substring(0, 2), 10)) === 1 && (parseInt(horaFin.substring(3, 6), 10) - parseInt(horaInicio.substring(3, 6), 10)) < 0) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Error en las horas seleccionadas, recuerde que el prestamo de escenarios se realiza por mínimo 1 hora',
+                    footer: '<a></a>'
+                })
+            } else if ((parseInt(horaInicio.substring(0, 2), 10)) < 8 || (parseInt(horaFin.substring(0, 2), 10) >= 22 && (parseInt(horaFin.substring(3, 6), 10) > 0))) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Error en las horas seleccionadas, la hora de inicio u hora de fin estan fuera del horario asignado para el prestamo de escenarios deportivos',
+                    footer: '<a></a>'
+                })
+
+            } else if (escenario.includes("diurno") === true && (parseInt(horaFin.substring(0, 2), 10) >= 18 && (parseInt(horaFin.substring(3, 6), 10) > 0))) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'La hora final del préstamo no corresponde a los horarios establecidos para el escenario seleccionado. Por favor verifique la hora final del préstamo',
+                    footer: '<a></a>'
+                })
+
+            } else if (escenario.includes("nocturno") === true && (parseInt(horaFin.substring(0, 2), 10) >= 22 && (parseInt(horaFin.substring(3, 6), 10) > 0))
+                || escenario.includes("nocturno") === true && (parseInt(horaInicio.substring(0, 2), 10) < 18)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Las horas del préstamo no corresponde a los horarios establecidos para el escenario seleccionado. Por favor verifique las horas del préstamo',
+                    footer: '<a></a>'
+                })
             } else {
                 $.ajax({
                     async: false,
@@ -237,23 +290,48 @@ var capturarDatosSolicitud = function () {
                                 url: 'scripts/uptc.edu.co.model/PHP/firma.php',
                                 success: function (response) {
                                     if (response == 1) {
-                                        alert("Solicitud creada, ahora debe subir los documentos de soporte")
-                                        window.location.href = "applicantLoanRequestFiles.html"
+                                        Swal.fire(
+                                            'Solicitud creada',
+                                            'Ahora debe subir los documentos de soporte',
+                                            'success'
+                                        ).then(function (){
+                                            window.location.href = "applicantLoanRequestFiles.html"
+                                        })
+
                                     } else if (response == 2) {
-                                        alert("Error al cargar el archivo, revise la subida")
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Oops...',
+                                            text: 'Error al cargar el archivo, revise la subida',
+                                            footer: '<a></a>'
+                                        })
                                     }
                                 }
                             });
                         } else {
-                            alert("Error al cargar la solicitud")
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Error al cargar la solicitud',
+                                footer: '<a></a>'
+                            })
+
                         }
                     }
                 });
             }
-        }else {
-            alert("La fecha inicial seleccionada no cumple con los requesitos minimos para generar la soliciitud de préstamo de escenarios deportivos")
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'La fecha inicial seleccionada no cumple con los requesitos minimos para generar la soliciitud de préstamo de escenarios deportivos',
+                footer: '<a></a>'
+            })
+            return false;
         }
-    }else{
-        alert("Hay campos vacíos en el formulario")
+    } else {
+        //alert("Hay campos vacíos en el formulario")
+        return true;
     }
+    return false;
 }
