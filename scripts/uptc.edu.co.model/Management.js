@@ -309,6 +309,13 @@ var capturarDatosSolicitud = function () {
                                         }
                                     }
                                 });
+                            } else if (response == 2){
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Ya existe un prestamo aprobado para esta fecha y hora seleccionada',
+                                    footer: '<a>Pruebe con una nueva fecha</a>'
+                                })
                             } else {
                                 Swal.fire({
                                     icon: 'error',

@@ -18,7 +18,44 @@ $horaTermino = new DateTime($horaFin);
 $interval = $horaIni->diff($horaTermino);
 $valor=(intval($interval->format('%H'))*$row['valorHora'])+((intval($interval->format('%i')))/60)*$row['valorHora'];
 $valor=''.$valor;
-$insert = "INSERT INTO solicitud_prestamo (codigoSolicitud, fechaInicio, fechaFin, estado, descripcion, horaInicio, horaFin, costo, documento, idEscenario) VALUES (null, '$fechaInicio', '$fechaFin','En revisión', '$descripcion', '$horaInicio', '$horaFin', '$valor','$documento', '$idEscenario');";
-$conn->query($insert);
 
-echo 1;
+$queryComprobar1="select fechaInicio, horaInicio, horaFin, idEscenario from solicitud_prestamo where estado='Aprobado'";
+$resultComprobar1=$conn->query($queryComprobar1);
+
+$queryComprobar2="select fechaInicio, horaInicio, horaFin, idEscenario from prestamo_institucional";
+$resultComprobar2=$conn->query($queryComprobar2);
+
+$count1=0;
+
+while ($rowComprobar1 = $resultComprobar1->fetch_array(MYSQLI_ASSOC)){
+    if ($rowComprobar1['fechaInicio']==$fechaInicio and $rowComprobar1['idEscenario']==$idEscenario){
+        if (date($rowComprobar1['horaInicio']) >= date($horaFin) or date($rowComprobar1['horaFin'])<=date($horaInicio)){
+            ;
+        }else{
+            $count1+=1;
+        }
+    }
+}
+
+$count2=0;
+
+while ($rowComprobar2 = $resultComprobar2->fetch_array(MYSQLI_ASSOC)){
+    if ($rowComprobar2['fechaInicio']==$fechaInicio and $rowComprobar2['idEscenario']==$idEscenario){
+        if (date($rowComprobar2['horaInicio']) >= date($horaFin) or date($rowComprobar2['horaFin'])<=date($horaInicio)){
+            ;
+        }else{
+            $count2+=1;
+        }
+    }
+}
+
+
+if ($count1==0 and $count2==0){
+    $insert = "INSERT INTO solicitud_prestamo (codigoSolicitud, fechaInicio, fechaFin, estado, descripcion, horaInicio, horaFin, costo, documento, idEscenario) VALUES (null, '$fechaInicio', '$fechaFin','En revisión', '$descripcion', '$horaInicio', '$horaFin', '$valor','$documento', '$idEscenario');";
+    $conn->query($insert);
+    echo 1;
+}else if ($count1==1 or $count2==1){
+    echo 2;
+} else {
+    echo 3;
+}
