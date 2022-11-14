@@ -70,7 +70,7 @@ var solicitudes = function (){
                 var td10 = document.createElement("td");
                 tr.append(td10);
 
-                if(valor[i][7] != "No autorizado" & valor[i][7] != "Cancelado" & fechaActual()[0] <= valor[i][1].substring(0,4) && fechaActual()[1] <= valor[i][1].substring(5,7)  ){
+                if(valor[i][7] != "No Autorizado" & valor[i][7] != "Cancelado" & fechaActual()[0] <= valor[i][1].substring(0,4) && fechaActual()[1] <= valor[i][1].substring(5,7)  ){
                     if ((valor[i][1].substring(8,10) - fechaActual()[2] >= 8) || (valor[i][1].substring(8,10) - fechaActual()[2] <= -8)){
                         td9.innerHTML = "<a href='applicantModifyLoan.html'><button type='button' id='modificar' style='border-color: white' onclick='createCookie("+valor[i][0]+")'><img src=\"media/editar.png\" width='25px'></button></a>";
                         td10.innerHTML= "<button type='button' style='border-color: white' onclick='createCookie("+valor[i][0]+"); saveCancelation()'><img src=\"media/cancelar.png\" width='25px'></button></a>";
