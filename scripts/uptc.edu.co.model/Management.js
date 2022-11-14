@@ -64,9 +64,14 @@ var crearSolicitante = function () {
     var tipoPersona = document.getElementById("REGTipoUsuario").value
     if (!(numeroDocumento == "" || nombre == "" || apellido == "" || direccion == "" || telefono == "" || correo == "" || usuario == "" || contrasena == "" || tipoPersona == "")) {
 
-        var solicitante = new Applicant(numeroDocumento, nombre, apellido, direccion, telefono, correo, usuario, contrasena, tipoPersona);
-        var response = solicitante.addSolicitante();
-        return false;
+        if (validateEmail()){
+            var solicitante = new Applicant(numeroDocumento, nombre, apellido, direccion, telefono, correo, usuario, contrasena, tipoPersona);
+            var response = solicitante.addSolicitante();
+            return false;
+        }else{
+            return true;
+        }
+        
         /*if (response == 1) {
             alert("Usuario creado exitosamente");
             window.location.replace("../index.html");
@@ -78,6 +83,29 @@ var crearSolicitante = function () {
         return true;
     }
 
+}
+
+function validateEmail(){
+
+    // Get our input reference.
+    var emailField = document.getElementById('REGcorreo');
+
+    // Define our regular expression.
+    var validEmail =  /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+
+    // Using test we can check if the text match the pattern
+    if( validEmail.test(emailField.value) ){
+        //alert('Email is valid, continue with form submission');
+        return true;
+    }else{
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'El correo no coincide con una direccion valida',
+            footer: '<a></a>'
+        })
+        return false;
+    }
 }
 
 var getCookie = function () {
@@ -351,4 +379,18 @@ var capturarDatosSolicitud = function () {
         return true;
     }
     return false;
+}
+
+var mensajeRecuperacion = function (){
+    if (validateEmail()){
+        Swal.fire(
+            'Si el correo existe en la plataforma, se enviará la contraseña',
+            '',
+            'success'
+        ).then(function (){
+            window.location.href = "index.html"
+        })
+        return false
+    }
+    return true
 }

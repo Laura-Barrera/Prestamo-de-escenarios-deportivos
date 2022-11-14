@@ -13,5 +13,15 @@ while ($row = $result->fetch_array(MYSQLI_ASSOC)){
     $final[]=$data;
     $data=[];
 }
+$query="select horaInicio, horaFin, escenario.nombre as nombre, seccional from prestamo_institucional as solicitud inner join escenario_deportivo as escenario on escenario.idEscenario=solicitud.idEscenario where fechaInicio='$fecha'";
+$result2=$conn->query($query);
+while ($row2 = $result2->fetch_array(MYSQLI_ASSOC)){
+    $data[]=$row2['horaInicio'].' - '.$row2['horaFin'];
+    $data[]=$row2['nombre'];
+    $data[]=$row2['seccional'];
+    $final[]=$data;
+    $data=[];
+}
+
 echo json_encode($final);
 

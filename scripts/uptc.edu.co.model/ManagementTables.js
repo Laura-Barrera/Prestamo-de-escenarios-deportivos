@@ -27,6 +27,7 @@ var documentos = function () {
             response = JSON.parse(response)
             for (let i = 0; i < response.length; i++) {
                 var dato = '"' + response[i] + '"'
+                var datoVerificar = '"' + response[i] + 'doc"'
                 var trow = document.createElement("tr");
                 var th1 = document.createElement("td")
                 th1.innerText = response[i];
@@ -34,7 +35,7 @@ var documentos = function () {
                 th2.setAttribute("id", response[i])
                 th2.innerText = "Sin cargar";
                 var th3 = document.createElement("td")
-                th3.innerHTML = "<input type=\"file\" class=\"form-control\" accept=\"application/pdf\" id=\"" + response[i] + "doc\" name=\"soporte\" onchange='cambiarEstado(" + dato + ")'>";
+                th3.innerHTML = "<input type=\"file\" class=\"form-control\" accept=\"application/pdf\" id=\"" + response[i] + "doc\" name=\"soporte\" onchange='cambiarEstado(" + dato + "),verificarPeso(" + datoVerificar + ","+dato+")'>";
                 var th4 = document.createElement("td")
                 th4.innerText = "none";
                 trow.append(th1)
@@ -52,6 +53,24 @@ var documentos = function () {
 var cambiarEstado = function (id) {
     var estado = document.getElementById(id)
     estado.innerText = "Cargado"
+}
+
+var verificarPeso = function ( idInput, idText ) {
+
+    var input = document.getElementById(idInput)
+    if (input.files[0].size<650000){
+        ;
+    }else{
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: "Peso del documento supera los 650Kb",
+            footer: '<a>Intentelo de nuevo</a>'
+        })
+        input.value='';
+        var estado = document.getElementById(idText)
+        estado.innerText = "Sin cargar"
+    }
 }
 
 var subirDocumentos = function () {

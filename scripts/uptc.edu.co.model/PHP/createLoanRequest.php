@@ -53,6 +53,8 @@ while ($rowComprobar2 = $resultComprobar2->fetch_array(MYSQLI_ASSOC)){
 if ($count1==0 and $count2==0){
     $insert = "INSERT INTO solicitud_prestamo (codigoSolicitud, fechaInicio, fechaFin, estado, descripcion, horaInicio, horaFin, costo, documento, idEscenario) VALUES (null, '$fechaInicio', '$fechaFin','En revisión', '$descripcion', '$horaInicio', '$horaFin', '$valor','$documento', '$idEscenario');";
     $conn->query($insert);
+    $valores="update solicitud_prestamo set costo=0 where documento=any(select numUsuario from usuario where tipoPersona='Estudiante' or tipoPersona='Funcionario' or tipoPersona='Docente')";
+    $conn->query($valores);
     echo 1;
 }else if ($count1==1 or $count2==1){
     echo 2;

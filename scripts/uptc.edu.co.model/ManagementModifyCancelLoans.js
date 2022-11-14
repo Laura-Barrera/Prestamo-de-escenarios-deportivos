@@ -260,7 +260,7 @@ var pagina = function (numModificación, valor) {
         "       </div>\n" +
         "       <div class=\"col-7\">\n" + //Other method for cargar escenarios
         "           <select class=\"form-select\" aria-label=\"seccional\" id=\"seccional\" onchange=\"cargarEscenarios()\">\n" +
-        "               <option selected>Seleccione...</option>\n" +
+        "               <option value=\"\" selected>Seleccione...</option>\n" +
         "               <option value=\"Tunja\">Tunja</option>\n" +
         "               <option value=\"Sogamoso\">Sogamoso</option>\n" +
         "               <option value=\"Duitama\">Duitama</option>\n" +
@@ -274,7 +274,7 @@ var pagina = function (numModificación, valor) {
         "       </div>\n" +
         "       <div class=\"col-7\">\n" +
         "           <select class=\"form-select\" aria-label=\"tipo usuario\" id=\"escenario\" >\n" +
-        "               <option selected>Seleccione...</option>\n" + "\n" +
+        "               <option value=\"\" selected>Seleccione...</option>\n" + "\n" +
         "           </select><br>\n" +
         "       </div>\n" +
         "   </div>\n" +
